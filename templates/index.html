@@ -1,0 +1,96 @@
+[[extend 'layout.html']]
+
+<div class="section">
+<style>
+h1 {
+  text-align: center;
+  font-size:100px
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+datalist {
+  position: absolute;
+  background-color: lightgrey;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+option {
+  background-color: #bbb;
+  padding: 4px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  font-size: 35px
+}
+</style>
+  <h1>Course Source</h1>
+
+<body>
+<div class = "text-center">
+<label for="myBrowser"></label>
+<input list="browsers" id="name" name="myBrowser" onfocus="this.value=''" onchange="this.blur();" style = "height: 50px; width: 200px;" />
+<datalist id="browsers">
+  <option value="CSE 183">
+  <option value="Index">
+  <option value="CSE 120">
+  <option value="Add">
+</datalist>
+</div>
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script language="javascript" type="text/javascript">
+
+  document.getElementById("name").addEventListener("click", search);
+  function search(){
+
+  
+    $("#name").bind('input', function () {
+        if (checkExists($('#name').val()) === true) {
+            var url = "";
+            var text = $('#name').val();
+            switch (text) {
+                case "Index":
+                    url = '/proj/index';
+                    break;
+                case "Add":
+                    url = '/proj/add';;
+                    break;
+                case "CSE 183":
+                    url = '/proj/cse183/1'
+                    break;
+                case "CSE 120":
+                    url = '/proj/cse120'
+                    break;
+                default:
+                    url = '@Url.Action("Index")';
+            }
+           
+             window.location.href = url;
+        }
+    });
+  }
+    function checkExists(inputValue) {
+        console.log(inputValue);
+
+        var x = document.getElementById("browsers");
+        var i;
+        var flag;
+        for (i = 0; i < x.options.length; i++) {
+            if (inputValue == x.options[i].value) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+</script>
+
