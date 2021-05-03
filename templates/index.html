@@ -39,9 +39,9 @@ option {
 <label for="myBrowser"></label>
 <input list="browsers" id="name" name="myBrowser" onfocus="this.value=''" onchange="this.blur();" style = "height: 50px; width: 200px;" />
 <datalist id="browsers">
-  <option value="CSE 183">
-  <option value="Index">
+  <option value="CSE 3">
   <option value="CSE 120">
+  <option value="CSE 183">
   <option value="Add">
 </datalist>
 </div>
@@ -59,17 +59,17 @@ option {
             var url = "";
             var text = $('#name').val();
             switch (text) {
-                case "Index":
-                    url = '/proj/index';
+                case "CSE 3":
+                    url = '/proj/resources/cse3';
                     break;
                 case "Add":
                     url = '/proj/add';;
                     break;
                 case "CSE 183":
-                    url = '/proj/cse183/1'
+                    url = '/proj/resources/cse183'
                     break;
                 case "CSE 120":
-                    url = '/proj/cse120'
+                    url = '/proj/resources/cse120'
                     break;
                 default:
                     url = '@Url.Action("Index")';

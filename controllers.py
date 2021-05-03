@@ -52,6 +52,16 @@ def cse183(test = None):
 def cse120():
     return dict()
 
+@action('resources/<c>') # /fixtures_example/index
+@action.uses(db, auth.user, 'resources.html')
+def resources(c = None):
+    assert c is not None
+    #c is the name of the class
+    #/resources/c
+    print(c)
+    return dict()
+
+
 @action('add', method=["GET", "POST"])
 @action.uses(db, session, auth.user, 'add.html')
 def add():
@@ -64,22 +74,24 @@ def add():
     return dict(form=form)
 
 # This endpoint will be used for URLs of the form /edit/k where k is the product id.
-@action('edit/<product_id:int>', method=["GET", "POST"])
+@action('edit/<word>', method=["GET", "POST"])
 @action.uses(db, session, auth.user, 'edit.html')
-def edit(product_id=None):
-    assert product_id is not None
+def edit(word=None):
+    assert word is not None
+    print(word)
     # We read the product being edited from the db.
     # p = db(db.product.id == product_id).select().first()
-    p = db.product[product_id]
-    if p is None:
+    #p = db.product[product_id]
+    #if p is None:
         # Nothing found to be edited!
-        redirect(URL('index'))
+     #   redirect(URL('index'))
     # Edit form: it has record=
-    form = Form(db.product, record=p, deletable=False, csrf_session=session, formstyle=FormStyleBulma)
-    if form.accepted:
+    form = Form(db.classes, deletable=False, csrf_session=session, formstyle=FormStyleBulma)
+   # if form.accepted:
         # The update already happened!
-        redirect(URL('index'))
+     #   redirect(URL('index'))
     return dict(form=form)
+    #return dict()
 
 @action('delete/<product_id:int>')
 @action.uses(db, session, auth.user, url_signer.verify())
