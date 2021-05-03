@@ -31,13 +31,22 @@ from .common import db, session, T, cache, auth, logger, authenticated, unauthen
 from py4web.utils.url_signer import URLSigner
 from .models import get_user_email
 from py4web.utils.form import Form, FormStyleBulma
+from .settings import APP_FOLDER
+import os
+import json
+import mysql.connector
 
+mydb = mysql.connector.connect(host = "localhost", user = "cschlicht", password = "$T@rlight12", database = "CourseSource")
 url_signer = URLSigner(session)
-
+mycursor = mydb.cursor()
+    
 @action('index') # /fixtures_example/index
 @action.uses(db, auth.user, 'index.html')
 def index():
+    
+    
     rows = db(db.classes.created_by == get_user_email()).select()
+ 
     return dict(rows=rows, url_signer=url_signer)
 
 @action('cse183/<test:int>') # /fixtures_example/index
@@ -56,9 +65,16 @@ def cse120():
 @action.uses(db, auth.user, 'resources.html')
 def resources(c = None):
     assert c is not None
+
+    mycursor.execute(f"SELECT * FROM classes HAVING symbol = '{c}'")
+    for i in mycursor:
+        print(i)
     #c is the name of the class
     #/resources/c
-    print(c)
+    #print(c)
+   
+
+    
     return dict()
 
 
@@ -66,7 +82,7 @@ def resources(c = None):
 @action.uses(db, session, auth.user, 'add.html')
 def add():
     # Insert form: no record= in it.
-    form = Form(db.classes, csrf_session=session, formstyle=FormStyleBulma)
+    form = Form(db.resources, csrf_session=session, formstyle=FormStyleBulma)
     if form.accepted:
         # We simply redirect; the insertion already happened.
         redirect(URL('index'))

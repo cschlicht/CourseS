@@ -1,0 +1,650 @@
+[
+    {
+        "ClassSymbol": "CSE3",
+        "Class Name": "Personal Computer Concepts: Software and Hardware"
+    },
+    {
+        "ClassSymbol": "CSE5J",
+        "Class Name": "Introduction to Programming in Java"
+    },
+    {
+        "ClassSymbol": "CSE12",
+        "Class Name": "Computer Systems and Assembly Language"
+    },
+    {
+        "ClassSymbol": "CSE13E",
+        "Class Name": "Embedded Systems and C Programming"
+    },
+    {
+        "ClassSymbol": "CSE13S",
+        "Class Name": "Comp Sys and C Program"
+    },
+    {
+        "ClassSymbol": "CSE15",
+        "Class Name": "Introduction to Data Structures"
+    },
+    {
+        "ClassSymbol": "CSE16",
+        "Class Name": "Applied Discrete Mathematics"
+    },
+    {
+        "ClassSymbol": "CSE20",
+        "Class Name": "Beginning Programming in Python"
+    },
+    {
+        "ClassSymbol": "CSE30",
+        "Class Name": "Programming Abstractions: Python"
+    },
+    {
+        "ClassSymbol": "CSE40",
+        "Class Name": "Machine Learning Basics: Data Analysis and Empirical Methods"
+    },
+    {
+        "ClassSymbol": "CSE50",
+        "Class Name": "Business Information Systems"
+    },
+    {
+        "ClassSymbol": "CSE58",
+        "Class Name": "Systems Analysis and Design"
+    },
+    {
+        "ClassSymbol": "CSE80A",
+        "Class Name": "Universal Access: Disability, Technology, and Society"
+    },
+    {
+        "ClassSymbol": "CSE80C",
+        "Class Name": "Starting a New Technology Company"
+    },
+    {
+        "ClassSymbol": "CSE80N",
+        "Class Name": "Introduction to Networking and the Internet"
+    },
+    {
+        "ClassSymbol": "CSE80S",
+        "Class Name": "Social Networks"
+    },
+    {
+        "ClassSymbol": "CSE100",
+        "Class Name": "Logic Design"
+    },
+    {
+        "ClassSymbol": "CSE101",
+        "Class Name": "Introduction to Data Structures and Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE102",
+        "Class Name": "Introduction to Analysis of Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE103",
+        "Class Name": "Computational Models"
+    },
+    {
+        "ClassSymbol": "CSE104",
+        "Class Name": "Computability and Computational Complexity"
+    },
+    {
+        "ClassSymbol": "CSE106",
+        "Class Name": "Applied Graph Theory and Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE107",
+        "Class Name": "Probability and Statistics for Engineers"
+    },
+    {
+        "ClassSymbol": "CSE108",
+        "Class Name": "Algorithmic Foundations of Cryptography"
+    },
+    {
+        "ClassSymbol": "CSE110A",
+        "Class Name": "Fundamentals of Compiler Design I"
+    },
+    {
+        "ClassSymbol": "CSE110B",
+        "Class Name": "Fundamentals of Compiler Design II"
+    },
+    {
+        "ClassSymbol": "CSE111",
+        "Class Name": "Advanced Programming"
+    },
+    {
+        "ClassSymbol": "CSE112",
+        "Class Name": "Comparative Programming Languages"
+    },
+    {
+        "ClassSymbol": "CSE113",
+        "Class Name": "Parallel Programming"
+    },
+    {
+        "ClassSymbol": "CSE115A",
+        "Class Name": "Introduction to Software Engineering"
+    },
+    {
+        "ClassSymbol": "CSE115B",
+        "Class Name": "Software Design Project"
+    },
+    {
+        "ClassSymbol": "CSE115C",
+        "Class Name": "Software Design Project II"
+    },
+    {
+        "ClassSymbol": "CSE115D",
+        "Class Name": "Software Design Project - Accelerated"
+    },
+    {
+        "ClassSymbol": "CSE117",
+        "Class Name": "Open Source Programming"
+    },
+    {
+        "ClassSymbol": "CSE118",
+        "Class Name": "Mobile Applications"
+    },
+    {
+        "ClassSymbol": "CSE119",
+        "Class Name": "Software for Society"
+    },
+    {
+        "ClassSymbol": "CSE120",
+        "Class Name": "Computer Architecture"
+    },
+    {
+        "ClassSymbol": "CSE121",
+        "Class Name": "Embedded System Design"
+    },
+    {
+        "ClassSymbol": "CSE122",
+        "Class Name": "Introduction to VLSI Digital System Design"
+    },
+    {
+        "ClassSymbol": "CSE123A",
+        "Class Name": "Engineering Design Project I"
+    },
+    {
+        "ClassSymbol": "CSE123B",
+        "Class Name": "Engineering Design Project II"
+    },
+    {
+        "ClassSymbol": "CSE125",
+        "Class Name": "Logic Design with Verilog"
+    },
+    {
+        "ClassSymbol": "CSE129A",
+        "Class Name": "Capstone Project I"
+    },
+    {
+        "ClassSymbol": "CSE129B",
+        "Class Name": "Capstone Project II"
+    },
+    {
+        "ClassSymbol": "CSE129C",
+        "Class Name": "Capstone Project III"
+    },
+    {
+        "ClassSymbol": "CSE130",
+        "Class Name": "Principles of Computer Systems Design"
+    },
+    {
+        "ClassSymbol": "CSE132",
+        "Class Name": "Computer Security"
+    },
+    {
+        "ClassSymbol": "CSE134",
+        "Class Name": "Embedded Operating Systems"
+    },
+    {
+        "ClassSymbol": "CSE138",
+        "Class Name": "Distributed Systems"
+    },
+    {
+        "ClassSymbol": "CSE140",
+        "Class Name": "Artificial Intelligence"
+    },
+    {
+        "ClassSymbol": "CSE142",
+        "Class Name": "Machine Learning and Data Mining"
+    },
+    {
+        "ClassSymbol": "CSE143",
+        "Class Name": "Introduction to Natural Language Processing"
+    },
+    {
+        "ClassSymbol": "CSE144",
+        "Class Name": "Applied Machine Learning"
+    },
+    {
+        "ClassSymbol": "CSE145",
+        "Class Name": "Introduction to Data Mining"
+    },
+    {
+        "ClassSymbol": "CSE146",
+        "Class Name": "Ethics & Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE150",
+        "Class Name": "Introduction to Computer Networks"
+    },
+    {
+        "ClassSymbol": "CSE151",
+        "Class Name": "Advanced Computer Networks"
+    },
+    {
+        "ClassSymbol": "CSE152",
+        "Class Name": "Principles of Computer Communication"
+    },
+    {
+        "ClassSymbol": "CSE156",
+        "Class Name": "Network Programming"
+    },
+    {
+        "ClassSymbol": "CSE157",
+        "Class Name": "Internet of Things"
+    },
+    {
+        "ClassSymbol": "CSE160",
+        "Class Name": "Introduction to Computer Graphics"
+    },
+    {
+        "ClassSymbol": "CSE161",
+        "Class Name": "Introduction to Data Visualization"
+    },
+    {
+        "ClassSymbol": "CSE162",
+        "Class Name": "Advanced Computer Graphics and Animation"
+    },
+    {
+        "ClassSymbol": "CSE163",
+        "Class Name": "Data Programming for Visualization"
+    },
+    {
+        "ClassSymbol": "CSE165",
+        "Class Name": "Human-Computer Interaction"
+    },
+    {
+        "ClassSymbol": "CSE166A",
+        "Class Name": "Game Theory and Applications I"
+    },
+    {
+        "ClassSymbol": "CSE166B",
+        "Class Name": "Game Theory and Applications II"
+    },
+    {
+        "ClassSymbol": "CSE167",
+        "Class Name": "Mobile Sensing and Interaction"
+    },
+    {
+        "ClassSymbol": "CSE168",
+        "Class Name": "Introduction to Augmented Reality and Virtual Reality"
+    },
+    {
+        "ClassSymbol": "CSE170",
+        "Class Name": "Management of Technology Seminar"
+    },
+    {
+        "ClassSymbol": "CSE171A",
+        "Class Name": "Management of Technology I"
+    },
+    {
+        "ClassSymbol": "CSE173",
+        "Class Name": "Financial Engineering & Management in High Technology Firms"
+    },
+    {
+        "ClassSymbol": "CSE174",
+        "Class Name": "Decision Analysis in Management"
+    },
+    {
+        "ClassSymbol": "CSE175",
+        "Class Name": "Business Strategy and Information Systems"
+    },
+    {
+        "ClassSymbol": "CSE180",
+        "Class Name": "Database Systems I"
+    },
+    {
+        "ClassSymbol": "CSE181",
+        "Class Name": "Database Systems II"
+    },
+    {
+        "ClassSymbol": "CSE182",
+        "Class Name": "Introduction to Database Management Systems"
+    },
+    {
+        "ClassSymbol": "CSE183",
+        "Class Name": "Web Applications"
+    },
+    {
+        "ClassSymbol": "CSE184",
+        "Class Name": "Data Wrangling and Web Scraping"
+    },
+    {
+        "ClassSymbol": "CSE185E",
+        "Class Name": "Technical Writing for Computer Science and Engineering"
+    },
+    {
+        "ClassSymbol": "CSE185S",
+        "Class Name": "Technical Writing and Communication in Computer Science"
+    },
+    {
+        "ClassSymbol": "CSE191",
+        "Class Name": "Computer Science and Technology Seminar"
+    },
+    {
+        "ClassSymbol": "CSE200",
+        "Class Name": "Research and Teaching in Computer Science and Engineering"
+    },
+    {
+        "ClassSymbol": "CSE201",
+        "Class Name": "Analysis of Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE202",
+        "Class Name": "Combinatorial Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE204",
+        "Class Name": "Computational Models and Complexity"
+    },
+    {
+        "ClassSymbol": "CSE205",
+        "Class Name": "Logic in Computer Science"
+    },
+    {
+        "ClassSymbol": "CSE207",
+        "Class Name": "Graph Algorithms"
+    },
+    {
+        "ClassSymbol": "CSE208",
+        "Class Name": "Introduction to Information Theory"
+    },
+    {
+        "ClassSymbol": "CSE209",
+        "Class Name": "Evolutionary Game Theory"
+    },
+    {
+        "ClassSymbol": "CSE210A",
+        "Class Name": "Programming Languages"
+    },
+    {
+        "ClassSymbol": "CSE210B",
+        "Class Name": "Advanced Programming Languages"
+    },
+    {
+        "ClassSymbol": "CSE211",
+        "Class Name": "Compiler Design"
+    },
+    {
+        "ClassSymbol": "CSE212A",
+        "Class Name": "Software Engineering"
+    },
+    {
+        "ClassSymbol": "CSE212B",
+        "Class Name": "Software Reuse and Component-Based Software Engineering"
+    },
+    {
+        "ClassSymbol": "CSE214",
+        "Class Name": "Principles of Database Systems"
+    },
+    {
+        "ClassSymbol": "CSE215",
+        "Class Name": "Design and Implementation of Database Systems"
+    },
+    {
+        "ClassSymbol": "CSE216",
+        "Class Name": "Formal Methods"
+    },
+    {
+        "ClassSymbol": "CSE220",
+        "Class Name": "Computer Architecture"
+    },
+    {
+        "ClassSymbol": "CSE221",
+        "Class Name": "Advanced Microprocessor Design"
+    },
+    {
+        "ClassSymbol": "CSE222A",
+        "Class Name": "VLSI Digital System Design"
+    },
+    {
+        "ClassSymbol": "CSE222B",
+        "Class Name": "VLSI System-on-a-Chip Design"
+    },
+    {
+        "ClassSymbol": "CSE225",
+        "Class Name": "Introduction to ASIC Systems Design"
+    },
+    {
+        "ClassSymbol": "CSE226",
+        "Class Name": "Advanced Parallel Processing"
+    },
+    {
+        "ClassSymbol": "CSE229",
+        "Class Name": "Field-Programmable Gate Arrays Computer-Assisted Design"
+    },
+    {
+        "ClassSymbol": "CSE231",
+        "Class Name": "Advanced Operating Systems"
+    },
+    {
+        "ClassSymbol": "CSE232",
+        "Class Name": "Distributed Systems"
+    },
+    {
+        "ClassSymbol": "CSE233",
+        "Class Name": "Advanced Computer Security"
+    },
+    {
+        "ClassSymbol": "CSE234",
+        "Class Name": "Understanding Cryptography"
+    },
+    {
+        "ClassSymbol": "CSE235",
+        "Class Name": "Cyber-Physical Systems Security"
+    },
+    {
+        "ClassSymbol": "CSE237",
+        "Class Name": "Storage Systems"
+    },
+    {
+        "ClassSymbol": "CSE240",
+        "Class Name": "Artificial Intelligence"
+    },
+    {
+        "ClassSymbol": "CSE241",
+        "Class Name": "Knowledge Engineering"
+    },
+    {
+        "ClassSymbol": "CSE242",
+        "Class Name": "Machine Learning"
+    },
+    {
+        "ClassSymbol": "CSE243",
+        "Class Name": "Data Mining"
+    },
+    {
+        "ClassSymbol": "CSE244A",
+        "Class Name": "Foundations of Deep Learning"
+    },
+    {
+        "ClassSymbol": "CSE244B",
+        "Class Name": "Machine Learning for Natural Language Processing"
+    },
+    {
+        "ClassSymbol": "CSE245",
+        "Class Name": "Computational Models of Discourse and Dialogue"
+    },
+    {
+        "ClassSymbol": "CSE246",
+        "Class Name": "Responsible Data Science"
+    },
+    {
+        "ClassSymbol": "CSE247",
+        "Class Name": "Projects in Artificial Intelligence"
+    },
+    {
+        "ClassSymbol": "CSE248",
+        "Class Name": "Foundations of Data Science"
+    },
+    {
+        "ClassSymbol": "CSE249",
+        "Class Name": "Large-Scale Web Analytics and Machine Learning"
+    },
+    {
+        "ClassSymbol": "CSE250A",
+        "Class Name": "Computer Networks"
+    },
+    {
+        "ClassSymbol": "CSE250B",
+        "Class Name": "Principles of Computer Communication"
+    },
+    {
+        "ClassSymbol": "CSE250C",
+        "Class Name": "High Speed Computer Networks"
+    },
+    {
+        "ClassSymbol": "CSE253",
+        "Class Name": "Network Security"
+    },
+    {
+        "ClassSymbol": "CSE257",
+        "Class Name": "Wireless and Mobile Networks"
+    },
+    {
+        "ClassSymbol": "CSE259",
+        "Class Name": "Sensor Networks"
+    },
+    {
+        "ClassSymbol": "CSE260",
+        "Class Name": "Computer Graphics"
+    },
+    {
+        "ClassSymbol": "CSE261",
+        "Class Name": "Advanced Visualization"
+    },
+    {
+        "ClassSymbol": "CSE262",
+        "Class Name": "Computer Animation"
+    },
+    {
+        "ClassSymbol": "CSE263",
+        "Class Name": "Data Driven Discovery and Visualization"
+    },
+    {
+        "ClassSymbol": "CSE264",
+        "Class Name": "Image Analysis and Computer Vision"
+    },
+    {
+        "ClassSymbol": "CSE265",
+        "Class Name": "Human-Computer Interaction"
+    },
+    {
+        "ClassSymbol": "CSE266A",
+        "Class Name": "Data Visualization and Statistical Programming in R"
+    },
+    {
+        "ClassSymbol": "CSE266B",
+        "Class Name": "Advanced Statistical Programming in R"
+    },
+    {
+        "ClassSymbol": "CSE266C",
+        "Class Name": "Introduction to Data Wrangling"
+    },
+    {
+        "ClassSymbol": "CSE272",
+        "Class Name": "Information Retrieval"
+    },
+    {
+        "ClassSymbol": "CSE276",
+        "Class Name": "Optimization Theory and Applications"
+    },
+    {
+        "ClassSymbol": "CSE277",
+        "Class Name": "Random Process Models in Engineering"
+    },
+    {
+        "ClassSymbol": "CSE279",
+        "Class Name": "Data Mining and Business Analytics in Knowledge Services"
+    },
+    {
+        "ClassSymbol": "CSE285",
+        "Class Name": "Technical Writing for Engineering Graduates"
+    },
+    {
+        "ClassSymbol": "CSE290A",
+        "Class Name": "Topics in Algorithms and Complexity Theory: Probabilistic Algorithms and Average Case Analysis"
+    },
+    {
+        "ClassSymbol": "CSE290C",
+        "Class Name": "Advanced Topics in Machine Learning"
+    },
+    {
+        "ClassSymbol": "CSE290D",
+        "Class Name": "Neural Computation"
+    },
+    {
+        "ClassSymbol": "CSE290E",
+        "Class Name": "Object-Oriented Programming Methodology"
+    },
+    {
+        "ClassSymbol": "CSE290F",
+        "Class Name": "Applications of Combinatorics"
+    },
+    {
+        "ClassSymbol": "CSE290G",
+        "Class Name": "Topics in Software Engineering"
+    },
+    {
+        "ClassSymbol": "CSE290H",
+        "Class Name": "Topics in Database Systems"
+    },
+    {
+        "ClassSymbol": "CSE290J",
+        "Class Name": "Advanced Topics in Visual Computing"
+    },
+    {
+        "ClassSymbol": "CSE290K",
+        "Class Name": "Advanced Topics in Natural Language Processing"
+    },
+    {
+        "ClassSymbol": "CSE290L",
+        "Class Name": "Topics in Crowdsourcing and Collaboration"
+    },
+    {
+        "ClassSymbol": "CSE290M",
+        "Class Name": "Topics in Parallel Computation"
+    },
+    {
+        "ClassSymbol": "CSE290N",
+        "Class Name": "Topics in Computer Performance"
+    },
+    {
+        "ClassSymbol": "CSE290O",
+        "Class Name": "Algorithmic Foundations of Convex Optimization"
+    },
+    {
+        "ClassSymbol": "CSE290P",
+        "Class Name": "Data Privacy via Machine Learning, and Back"
+    },
+    {
+        "ClassSymbol": "CSE290Q",
+        "Class Name": "Topics in Programming Languages"
+    },
+    {
+        "ClassSymbol": "CSE290S",
+        "Class Name": "Advanced Topics in Computer Systems"
+    },
+    {
+        "ClassSymbol": "CSE290T",
+        "Class Name": "Topics in Computing for Society"
+    },
+    {
+        "ClassSymbol": "CSE290X",
+        "Class Name": "Cryptography and Computer Security"
+    },
+    {
+        "ClassSymbol": "CSE290Y",
+        "Class Name": "Quantum Computing"
+    },
+    {
+        "ClassSymbol": "CSE293",
+        "Class Name": "Advanced Topics in Computer Engineering"
+    }
+]

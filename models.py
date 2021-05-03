@@ -16,9 +16,19 @@ def get_time():
 
 db.define_table(
     'classes', # This table, like all tables, will have an "id"
-    Field('number'), # CSE 183
-    Field('name'), # Web apps
+    Field('name'), # CSE 
+    Field('number'), # 183
     Field('description', 'text'),
+    Field('created_by', default=get_user_email),
+    Field('creation_date', 'datetime', default=get_time),
+)
+
+db.define_table(
+    'resources',
+    Field('classes_id', 'reference classes'),
+    Field('title', requires=IS_NOT_EMPTY()),
+    Field('link'),
+    Field('description', requires=IS_NOT_EMPTY()),
     Field('created_by', default=get_user_email),
     Field('creation_date', 'datetime', default=get_time),
 )
@@ -27,6 +37,10 @@ db.classes.id.readable = db.classes.id.writable = False
 db.classes.created_by.readable = db.classes.created_by.writable = False
 db.classes.creation_date.readable = db.classes.creation_date.writable = False
 
+db.resources.classes_id.readable = db.resources.classes_id.writable = False
+db.resources.id.readable = db.resources.id.writable = False
+db.resources.created_by.readable = db.resources.created_by.writable = False
+db.resources.creation_date.readable = db.resources.creation_date.writable = False
 
 
 ### Define your table below
