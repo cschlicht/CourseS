@@ -36,7 +36,7 @@ import os
 import json
 import mysql.connector
 
-mydb = mysql.connector.connect(host = "localhost", user = "cschlicht", password = "$T@rlight12", database = "CourseSource")
+mydb = mysql.connector.connect(host = "35.235.81.222", user = "root", password = "oz3nlHmzwc8o9HG8", database = "coursesource")
 url_signer = URLSigner(session)
 mycursor = mydb.cursor()
     
@@ -66,7 +66,7 @@ def cse120():
 def resources(c = None):
     assert c is not None
 
-    mycursor.execute(f"SELECT * FROM classes HAVING symbol = '{c}'")
+    mycursor.execute(f"SELECT * FROM class HAVING sybmol = '{c}'")
     for i in mycursor:
         print(i)
     #c is the name of the class
