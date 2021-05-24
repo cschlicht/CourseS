@@ -22,12 +22,26 @@ db.define_table(
     Field('created_by', default=get_user_email),
     Field('creation_date', 'datetime', default=get_time),
 )
+db.define_table('contact',
+                Field('comment'),
+                Field('author'), 
+                Field('email', default = get_user_email),
+                Field('status', 'integer', default = 0))
+
+db.define_table('user',
+                Field('item_id', 'integer'),
+                
+                Field('email'), 
+                Field('status', 'integer', default = 0))
 
 db.define_table(
     'resources',
     Field('classes_id', 'reference classes'),
+    Field('sym'),
     Field('title', requires=IS_NOT_EMPTY()),
     Field('link'),
+    Field('likes', 'integer', default = 0),
+    Field('dislikes', 'integer', default = 0),
     Field('description', requires=IS_NOT_EMPTY()),
     Field('created_by', default=get_user_email),
     Field('creation_date', 'datetime', default=get_time),

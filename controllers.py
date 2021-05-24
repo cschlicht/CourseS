@@ -30,88 +30,178 @@ from yatl.helpers import A
 from .common import db, session, T, cache, auth, logger, authenticated, unauthenticated, flash
 from py4web.utils.url_signer import URLSigner
 from .models import get_user_email
-from py4web.utils.form import Form, FormStyleBulma
-from .settings import APP_FOLDER
-import os
-import json
-import mysql.connector
 
-mydb = mysql.connector.connect(host = "35.235.81.222", user = "root", password = "oz3nlHmzwc8o9HG8", database = "coursesource")
 url_signer = URLSigner(session)
-mycursor = mydb.cursor()
-    
-@action('index') # /fixtures_example/index
-@action.uses(db, auth.user, 'index.html')
+
+
+
+@action('index')
+@action.uses(url_signer, auth.user, 'index.html')
 def index():
     
-    
-    rows = db(db.classes.created_by == get_user_email()).select()
- 
-    return dict(rows=rows, url_signer=url_signer)
-
-@action('cse183/<test:int>') # /fixtures_example/index
-@action.uses(db, auth.user, 'cse183.html')
-def cse183(test = None):
-    assert test is not None
-    print(test)
-    return dict()
-
-@action('cse120') # /fixtures_example/index
-@action.uses(db, auth.user, 'cse120.html')
-def cse120():
-    return dict()
-
-@action('resources/<c>') # /fixtures_example/index
-@action.uses(db, auth.user, 'resources.html')
+    #user = get_user_email()
+    return dict(
+        # This is the signed URL for the callback.
+        load_contacts_url = URL('load_contacts', signer=url_signer),
+        add_contact_url = URL('add_contact', signer=url_signer),
+        delete_contact_url = URL('delete_contact', signer=url_signer),
+        like_url = URL('like', signer = url_signer),
+    )
+@action('resources/<c>')
+@action.uses(url_signer, auth.user, 'resources.html')
 def resources(c = None):
     assert c is not None
+    #user = get_user_email()
+    rows = db(db.resources.sym == c).select()
+    #print(rows)
+    return dict(
+        course = c,
+        # This is the signed URL for the callback.
+        load_contacts_url = URL('load_contacts', signer=url_signer),
+        add_contact_url = URL('add_contact', signer=url_signer),
+        delete_contact_url = URL('delete_contact', signer=url_signer),
+        like_url = URL('like', signer = url_signer),
+    )
 
-    mycursor.execute(f"SELECT * FROM class HAVING sybmol = '{c}'")
-    for i in mycursor:
-        print(i)
-    #c is the name of the class
-    #/resources/c
-    #print(c)
+# This is our very first API function.
+@action('load_contacts')
+@action.uses(url_signer.verify(), db)
+def load_contacts():
+    user = get_user_email()
+    #print(user)
+   # rows = db(db.contact).select().as_list()
+    rows = db(db.resources).select().as_list()
+    #print(rows)
+    users = db(db.user.email == get_user_email()).select().as_list()
+    #print(users)
+    flag = 0
+    for r in rows:
+        #print(r['id'])
+        for u in users:
+            if u['item_id'] == r['id'] and u['email'] == get_user_email():
+                flag = 1
+            
+        if(flag == 0):
+            db.user.insert(
+            item_id = r['id'],
+            email = get_user_email(),
+            status = 0
+        )
+        flag = 0
+
+    #print(rows)
+    users = db(db.user.email == get_user_email()).select().as_list()
+    #print(users)
+
+    #print(rows)
+    #u = db(db.user.email == get) .select().as_list()
+   # print(users)
+    '''r
+    for r in rows:
+        print(r['id'])
+    for u in users:
+        print(u['item_id'])
+    '''
+
    
+    return dict(rows=rows, user = user, users = users)
+
+@action('add_contact', method="POST")
+@action.uses(url_signer.verify(), db)
+def add_contact():
+    u = get_user_email()
+    id2 = db.contact.insert(
+        comment=request.json.get('comment'),
+        author=request.json.get('author'),
+        email = get_user_email,
+        status = 0,
+    )
+    id = db.resources.insert(sym = request.json.get('author'), title = request.json.get('title'), description = request.json.get('comment'), likes = 0, dislikes = 0)
+    db.user.insert(
+        item_id = id,
+        email = get_user_email,
+        status = 0,
+    )
 
     
-    return dict()
+    return dict(id=id, u = u)
+
+@action('delete_contact')
+@action.uses(url_signer.verify(), db)
+def delete_contact():
+    id = request.params.get('id')
+    assert id is not None
+    db(db.resources.id == id).delete()
+    return "ok"
 
 
-@action('add', method=["GET", "POST"])
-@action.uses(db, session, auth.user, 'add.html')
-def add():
-    # Insert form: no record= in it.
-    form = Form(db.resources, csrf_session=session, formstyle=FormStyleBulma)
-    if form.accepted:
-        # We simply redirect; the insertion already happened.
-        redirect(URL('index'))
-    # Either this is a GET request, or this is a POST but not accepted = with errors.
-    return dict(form=form)
+@action('like', method="POST")
+@action.uses(url_signer.verify(), db)
+def like():
+    id = request.json.get("id")
+    field = request.json.get("field")
+    value = request.json.get("value")
+    prev = request.json.get("prev")
+    #print(prev)
+   # db(db.resources.id == id).update(**{field: value})
+    rows = db(db.resources.id == id).select().as_list()
+    for r in rows:
 
-# This endpoint will be used for URLs of the form /edit/k where k is the product id.
-@action('edit/<word>', method=["GET", "POST"])
-@action.uses(db, session, auth.user, 'edit.html')
-def edit(word=None):
-    assert word is not None
-    print(word)
-    # We read the product being edited from the db.
-    # p = db(db.product.id == product_id).select().first()
-    #p = db.product[product_id]
-    #if p is None:
-        # Nothing found to be edited!
-     #   redirect(URL('index'))
-    # Edit form: it has record=
-    form = Form(db.classes, deletable=False, csrf_session=session, formstyle=FormStyleBulma)
-   # if form.accepted:
-        # The update already happened!
-     #   redirect(URL('index'))
-    return dict(form=form)
-    #return dict()
+        #print(r['likes'])
+        likeVal = r['likes']
+        disVal = r['dislikes']
+    
+    
+    
+    if value == 1:
+        if prev == 0: #if we are currently unliked
+            likeVal += 1
+        
+        if prev == 2: #if we are currently disliked
+            likeVal += 1
+            disVal -=1
+        
+        db(db.resources.id == id).update(likes = likeVal)
+        db(db.resources.id == id).update(dislikes = disVal)
 
-@action('delete/<product_id:int>')
-@action.uses(db, session, auth.user, url_signer.verify())
-def delete(product_id=None):
-    assert product_id is not None
-    db(db.product.id == product_id).delete()
-    redirect(URL('index'))
+    if value == 0: #we are going from some stage to unliked 
+        if prev == 1: #if we are currently liked
+            likeVal -= 1
+        if prev == 2: #if we are currently disliked
+            disVal -= 1
+
+        db(db.resources.id == id).update(likes = likeVal)
+        db(db.resources.id == id).update(dislikes = disVal)
+    if value == 2:
+        if prev == 0: #if we are currently unliked
+            disVal += 1
+        
+        if prev == 1: #if we are currently liked
+            likeVal -= 1
+            disVal +=1
+        
+        db(db.resources.id == id).update(likes = likeVal)
+        db(db.resources.id == id).update(dislikes = disVal)
+    
+    
+    rows = db(db.resources.id == id).select().as_list()
+    #for r in rows:
+
+        #print("likes: ", r['likes'])
+        #print("dislikes: ", r['dislikes'])
+    #db(db.user.item_id == id).update(**{field: value})
+    db.user.update_or_insert(
+        ((db.user.item_id == id) & (db.user.email == get_user_email())),
+        item_id = id,
+        email = get_user_email(),
+        status = value
+    )
+
+     
+    
+
+    
+    #print(value)
+
+
+
