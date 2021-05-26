@@ -38,10 +38,11 @@ url_signer = URLSigner(session)
 @action('index')
 @action.uses(url_signer, auth.user, 'index.html')
 def index():
-    
+    rows = db(db.classes).select()
     #user = get_user_email()
     return dict(
         # This is the signed URL for the callback.
+        rows = rows,
         load_contacts_url = URL('load_contacts', signer=url_signer),
         add_contact_url = URL('add_contact', signer=url_signer),
         delete_contact_url = URL('delete_contact', signer=url_signer),
