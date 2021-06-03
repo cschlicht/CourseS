@@ -50,19 +50,35 @@ with open(GCS_KEY_PATH) as gcs_key_f:
 # I create a handle to gcs, to perform the various operations.
 gcs = NQGCS(json_key_path=GCS_KEY_PATH)
 
+JSON_FILE = os.path.join(APP_FOLDER, "data", "classes.json")
+
 @action('index')
 @action.uses(url_signer, auth.user, 'index.html')
 def index():
-    
-    #user = get_user_email()
+    # print(JSON_FILE)
+    # Inserting JSON to db
+    with open(JSON_FILE,'r', encoding='utf-8') as j:
+        data = json.load(j)
+        for d in data:
+            # print(d["ClassSymbol"])
+            # print(d["Class Name"])
+            db.classes.insert(
+                number=d['ClassSymbol'],
+                name=d['Class Name']
+            )
+    # db(db.classes).delete()  # Deletes classes database
+
+    rows = db(db.classes).select()
+    print(rows)
     return dict(
         # This is the signed URL for the callback.
+        rows=rows,
         load_contacts_url = URL('load_contacts', signer=url_signer),
         add_contact_url = URL('add_contact', signer=url_signer),
         delete_contact_url = URL('delete_contact', signer=url_signer),
-        like_url = URL('like', signer = url_signer), 
-        
+        like_url = URL('like', signer=url_signer),
     )
+
 @action('resources/<c>')
 @action.uses(url_signer, auth.user, 'resources.html')
 def resources(c = None):

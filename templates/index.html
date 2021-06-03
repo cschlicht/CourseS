@@ -32,7 +32,12 @@ option {
   font-size: 35px
 }
 </style>
-  <h1>Course Source</h1>
+
+<div class="columns is-mobile">
+  <div class="column is-half is-offset-one-quarter">
+      <img src = "logo.png">
+  </div>
+</div>
 
 <body>
 <div class = "text-center">
@@ -203,6 +208,43 @@ option {
     <option value =  "CSE293" >
 </datalist>
 </div>
+
+<section class="section">
+    <h1 class="title">BSOE Courses</h1>
+    <div class="columns is-mobile">
+        <div class="column is-three-fifths is-offset-one-fifth">
+            <table class="table is-striped is-fullwidth is-hoverable">
+                <tr>
+                    <th>Number</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Name</th>
+                </tr>
+                [[for row in rows:]]
+                <tr>
+                    <td><a href="http://127.0.0.1:8000/proj/resources/[[=row['number'] ]]" title=[[=row['number'] ]]>[[=row['number'] ]]</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>[[=row['name'] ]]<!-- Get class name from row !--></td>
+                </tr>
+                [[pass]]
+                </table>
+
+                <!--  <a class="button is-primary" href="[[=URL('add_contact')]]">-->
+                <!--    <span>Add Contact</span>-->
+                <!--  </a>-->
+        </div>
+    </div>
+
+</section>
 
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
