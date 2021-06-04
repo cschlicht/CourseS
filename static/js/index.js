@@ -60,6 +60,7 @@ let init = (app) => {
         add_link: "",
         author: "",
         rows: [],
+        class_rows: [],
         thumbs: [],
         users: [],
         file_name: null, // File name
@@ -85,7 +86,7 @@ let init = (app) => {
         // Initializes useful fields of images.
         rows.map((thumb) => {
             thumb.status = 0;
-    
+
         })
     };
 
@@ -172,6 +173,26 @@ let init = (app) => {
         console.log(x.status); 
     };
 
+
+    app.set_star_status = function (row_idx, status, prevStatus) {
+        app.vue.class_rows[row_idx].status = status;
+        axios.post(star_url,
+                {
+                    id: app.vue.class_rows[row_idx].id,
+                    field: 'star',
+                    value: status,
+                    prev: prevStatus
+
+
+                });
+
+        app.init()
+    };
+
+    app.get_star_status = function (row_idx) {
+        let x = app.vue.class_rows[row_idx];
+        console.log(x.status);
+    };
 
    
     app.file_info = function () {
@@ -339,6 +360,7 @@ let init = (app) => {
         file_info: app.file_info,
     };
 
+
     // We form the dictionary of all methods, so we can assign them
     // to the Vue app in a single blow.
     app.methods = {
@@ -346,6 +368,8 @@ let init = (app) => {
         set_add_status: app.set_add_status,
         set_like_status: app.set_like_status,
         get_like_status: app.get_like_status,
+        set_star_status: app.set_star_status,
+        get_star_status: app.get_star_status,
         delete_contact: app.delete_contact,
         upload_file: app.upload_file, // Uploads a selected file
         delete_file: app.delete_file, // Delete the file.
@@ -371,6 +395,10 @@ let init = (app) => {
             });
         axios.get(load_contacts_url).then(function (response) {
             app.vue.rows = app.enumerate(response.data.rows);
+            app.vue.users = app.enumerate(response.data.users);
+        });
+        axios.get(load_classes_url).then(function (response) {
+            app.vue.class_rows = app.enumerate(response.data.class_rows);
             app.vue.users = app.enumerate(response.data.users);
         });
     };

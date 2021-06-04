@@ -57,27 +57,43 @@ JSON_FILE = os.path.join(APP_FOLDER, "data", "classes.json")
 def index():
     # print(JSON_FILE)
     # Inserting JSON to db
-    with open(JSON_FILE,'r', encoding='utf-8') as j:
-        data = json.load(j)
-        for d in data:
-            # print(d["ClassSymbol"])
-            # print(d["Class Name"])
-            db.classes.insert(
-                number=d['ClassSymbol'],
-                name=d['Class Name']
-            )
+    # with open(JSON_FILE,'r', encoding='utf-8') as j:
+    #     data = json.load(j)
+    #     for d in data:
+    #         # print(d["ClassSymbol"])
+    #         # print(d["Class Name"])
+    #         db.classes.insert(
+    #             number=d['ClassSymbol'],
+    #             name=d['Class Name'],
+    #             favorite=False
+    #         )
     # db(db.classes).delete()  # Deletes classes database
 
     rows = db(db.classes).select()
-    print(rows)
+    # print(rows)
     return dict(
         # This is the signed URL for the callback.
-        rows=rows,
-        load_contacts_url = URL('load_contacts', signer=url_signer),
-        add_contact_url = URL('add_contact', signer=url_signer),
-        delete_contact_url = URL('delete_contact', signer=url_signer),
-        like_url = URL('like', signer=url_signer),
+        rows = rows,
+        star_url = URL('star', signer=url_signer)
     )
+
+@action('star', method="POST")
+@action.uses(url_signer.verify(), db)
+def star():
+    id = request.json.get("id")
+    field = request.json.get("field")
+    value = request.json.get("value")
+    prev = request.json.get("prev")
+
+    if value == 1:  # changing to starred
+        if prev == 0:  # if we are currently not starred
+            star_val = True
+            db(db.classes.id == id).update(favorite=star_val)
+
+    if value == 0:  # changing to not starred
+        if prev == 1:  # if we are currently starred
+            star_val = False
+            db(db.classes.id == id).update(favorite=star_val)
 
 @action('resources/<c>')
 @action.uses(url_signer, auth.user, 'resources.html')
@@ -115,8 +131,6 @@ def resources(c = None):
         delete_url = URL('notify_delete', signer=url_signer),
     )
 
-# This is our very first API function.
-
 
 @action('load_contacts')
 @action.uses(url_signer.verify(), db)
@@ -147,7 +161,7 @@ def load_contacts():
             item_id = r['id'],
             email = get_user_email(),
             status = 0
-        )
+            )
         flag = 0
 
     #print(rows)
@@ -446,6 +460,69 @@ def mark_possible_upload(file_path):
         confirmed=False,
     )
 
+
+# @action('load_classes')
+# @action.uses(url_signer.verify(), db)
+# def load_classes():
+#     user = get_user_email()
+#     # print(user)
+#     # rows = db(db.contact).select().as_list()
+#     db(db.resources.likes == None).delete()
+#     rows = db(db.resources).select().as_list()
+#
+#     # for r in rows:
+#     # print(r['sym'], r['title'], r['likes'])
+#     # rows = sorted(rows, key = lambda i: (i['likes']))
+#     # print(type(rows))
+#     # rows.sort(key=testFunc)
+#     # print(rows)
+#     users = db(db.user.email == get_user_email()).select().as_list()
+#     # print(users)
+#     flag = 0
+#     for r in rows:
+#         # print(r['id'])
+#         for u in users:
+#             if u['item_id'] == r['id'] and u['email'] == get_user_email():
+#                 flag = 1
+#
+#         if (flag == 0):
+#             db.user.insert(
+#                 item_id=r['id'],
+#                 email=get_user_email(),
+#                 status=0
+#             )
+#         flag = 0
+#
+#     # print(rows)
+#     users = db(db.user.email == get_user_email()).select().as_list()
+#     # print(users)
+#
+#     # print(rows)
+#     # u = db(db.user.email == get) .select().as_list()
+#     # print(users)
+#     '''r
+#     for r in rows:
+#         print(r['id'])
+#     for u in users:
+#         print(u['item_id'])
+#     '''
+#
+#     ups = db(db.upload.owner == get_user_email()).select()
+#     # print(ups)
+#     # upss = db(db.upload).select()
+#     # print(ups)
+#     for u in ups:
+#         fileP = u['file_path']
+#         # tes = db(db.resources.id == u['resource_id']).select()
+#         # for x in tes:
+#         # print(x['title'])
+#
+#         # download_url=gcs_url(GCS_KEYS, fileP, verb='GET')
+#         # print("NEW URL: ", download_url)
+#
+#     rows = sorted(rows, key=lambda i: (i['likes']))
+#
+#     return dict(rows=rows, user=user, users=users)
 
 
 

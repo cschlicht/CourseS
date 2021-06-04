@@ -18,7 +18,7 @@ db.define_table(
     'classes', # This table, like all tables, will have an "id"
     Field('name'), # CSE 
     Field('number'), # 183
-    Field('description', 'text'),
+    Field('favorite', 'boolean', default=False),
     Field('created_by', default=get_user_email),
     Field('creation_date', 'datetime', default=get_time),
 )
