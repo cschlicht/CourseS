@@ -75,6 +75,13 @@ a:hover + .box,.box:hover{
               </span>
             </span>
           </label>
+
+          <div v-if = "!uploading && image_bool">
+          <img width="400" :src="download_url" />
+          </div>
+
+
+
         </div>
       </p>
       <!-- 
@@ -95,9 +102,7 @@ a:hover + .box,.box:hover{
         </button>
       </p>
       -->
-      <div v-if = "image_bool">
-        <img width="400" :src="download_url" />
-      </div>
+      
       
     </div>
       <!-- END OF FILE UPLAOD CODE -->
@@ -133,6 +138,7 @@ a:hover + .box,.box:hover{
       </div>
     </div>
      
+     <br>
 
   <div class="tile is-ancestor"></div>
 

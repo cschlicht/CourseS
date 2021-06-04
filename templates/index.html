@@ -219,6 +219,7 @@ option {
 <!--        </div>-->
 <!--    </div>-->
     <h1 class="title">BSOE Courses</h1>
+    <div class="section" id="vue-target" v-cloak>
     <div class="columns is-mobile">
         <div class="column is-three-fifths is-offset-one-fifth">
             <table class="table is-striped is-fullwidth is-hoverable">
@@ -236,7 +237,7 @@ option {
 <!--                <div v-for = "row in rows" class = "block">-->
                 [[for row in rows:]]
                 <tr>
-                    <td><a href="http://127.0.0.1:8000/proj/resources/[[=row['number'] ]]" title=[[=row['number'] ]]>[[=row['number'] ]]</a></td>
+                    <td><a v-bind:href="http://127.0.0.1:8000/proj/resources/row.number">[[=row['number'] ]]</a></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -248,11 +249,11 @@ option {
 <!--                        <span class="icon has-text-warning">-->
 <!--                            <i class="fa fa-star-o"></i>-->
 <!--                        </span>-->
-                        <div v-if="row.favorite == False" >
+                        <div v-if="row.favorite == 0" >
                             <i class="fa fa-star fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 1, 0)"></i>
                         </div>
 
-                        <div v-if="row.favorite == True" >
+                        <div v-if="row.favorite == 1" >
                             <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 0, 1)"></i>
                         </div>
                     </td>
@@ -267,7 +268,7 @@ option {
                 <!--  </a>-->
         </div>
     </div>
-
+</div>
 </section>
 
 </body>
@@ -793,4 +794,7 @@ option {
     }
 </script>
 
-<script>let star_url = "[[=XML(star_url)]]";</script>
+<script>let star_url = "[[=XML(star_url)]]";
+        let load_classes_url = "[[=XML(load_classes_url)]]";
+</script>
+<script src="js/index.js"></script>

@@ -175,7 +175,6 @@ let init = (app) => {
 
 
     app.set_star_status = function (row_idx, status, prevStatus) {
-        app.vue.class_rows[row_idx].status = status;
         axios.post(star_url,
                 {
                     id: app.vue.class_rows[row_idx].id,
