@@ -72,14 +72,21 @@ def index():
              )
     '''         
     #db(db.classes).delete()  # Deletes classes database
-
+    #load_classes()
     rows = db(db.classes).select()
     #print(rows)
     return dict(
         # This is the signed URL for the callback.
-        rows = rows,
-        load_classes_url = URL('load_classes', signer = url_signer),
-        star_url = URL('star', signer=url_signer)
+        star_url = URL('star', signer = url_signer),
+        load_classes_url = URL('load_classes', signer=url_signer),
+        load_contacts_url = URL('load_contacts', signer=url_signer),
+        add_contact_url = URL('add_contact', signer=url_signer),
+        delete_contact_url = URL('delete_contact', signer=url_signer),
+        like_url = URL('like', signer = url_signer),
+        file_info_url = URL('file_info', signer=url_signer),
+        obtain_gcs_url = URL('obtain_gcs', signer=url_signer),
+        notify_url = URL('notify_upload', signer=url_signer),
+        delete_url = URL('notify_delete', signer=url_signer),
     )
 
 @action('star', method="POST")
@@ -90,15 +97,26 @@ def star():
     value = request.json.get("value")
     prev = request.json.get("prev")
 
+    test = db(db.user.class_id == id).select().as_list()
+    print(test)
+    
     if value == 1:  # changing to starred
         if prev == 0:  # if we are currently not starred
-            star_val = 1
-            db(db.classes.id == id).update(favorite=star_val)
+            
+            db(db.classes.id == id).update(favorite=value)
+            if test:
+                db(db.user.class_id == id).update(favorite=value)
+            else:
+                db.user.insert(class_id = id, favorite = value)
 
     if value == 0:  # changing to not starred
         if prev == 1:  # if we are currently starred
-            star_val = 0
-            db(db.classes.id == id).update(favorite=star_val)
+            
+            db(db.classes.id == id).update(favorite=value)
+            if test:
+                db(db.user.class_id == id).update(favorite=value)
+            else:
+                db.user.insert(class_id = id, favorite = value)
 
 @action('resources/<c>')
 @action.uses(url_signer, auth.user, 'resources.html')
@@ -126,6 +144,7 @@ def resources(c = None):
     return dict(
         course = c,
         # This is the signed URL for the callback.
+        load_classes_url = URL('load_classes', signer=url_signer),
         load_contacts_url = URL('load_contacts', signer=url_signer),
         add_contact_url = URL('add_contact', signer=url_signer),
         delete_contact_url = URL('delete_contact', signer=url_signer),
@@ -145,7 +164,7 @@ def load_contacts():
    # rows = db(db.contact).select().as_list()
     db(db.resources.likes == None).delete()
     rows = db(db.resources).select().as_list()
-
+    #print(rows)
     #for r in rows:
        # print(r['sym'], r['title'], r['likes'])
     #rows = sorted(rows, key = lambda i: (i['likes']))
@@ -183,12 +202,12 @@ def load_contacts():
         print(u['item_id'])
     '''
 
-    ups = db(db.upload.owner == get_user_email()).select()
+    #ups = db(db.upload.owner == get_user_email()).select()
     #print(ups)
     #upss = db(db.upload).select()
     #print(ups)
-    for u in ups:
-        fileP = u['file_path']
+   # for u in ups:
+        #fileP = u['file_path']
         #tes = db(db.resources.id == u['resource_id']).select()
         #for x in tes:
             #print(x['title'])
@@ -200,6 +219,66 @@ def load_contacts():
     rows = sorted(rows, key = lambda i: (i['likes']))
     
     return dict(rows=rows, user = user, users = users)
+
+@action('load_classes')
+@action.uses(url_signer.verify(), db)
+def load_classes():
+    rows = db(db.classes).select().as_list()
+    users = db(db.user.email == get_user_email()).select().as_list()
+    #print(users)
+    flag = 0
+    for r in rows:
+        #print(r['id'])
+        for u in users:
+            if u['class_id'] == r['id'] and u['email'] == get_user_email():
+                flag = 1
+            
+        if(flag == 0):
+            db.user.insert(
+            class_id = r['id'],
+            email = get_user_email(),
+            favorite = 0,
+            )
+        flag = 0
+    '''r
+    use = db(db.user.class_id == 645).select().as_list()
+    print(use)
+    x = 0
+    for r in rows:
+        use = db(db.user.class_id == r['id']).select().as_list()
+        for u in use:
+            x += 1
+            if x > 1:
+                db(db.user.id == u['id']).delete()
+        x = 0
+
+    use = db(db.user.class_id == 645).select().as_list()
+    '''
+   # print(use)
+    #print(users)
+    users = db(db.user.email == get_user_email()).select().as_list()
+    #rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
+    likedList = [] 
+    likedDic = {}
+    for u in users:
+        if u['favorite'] == 1:
+            cl = db(db.classes.id == u['class_id']).select().as_list()
+            #print(cl)
+            for c in cl:
+
+                likedDic['number'] = c['number']
+                likedDic['name'] = c['name']
+                likedList.append(likedDic)
+                likedDic = {}
+
+   # print(likedList)
+    for u in likedList:
+
+        print(u['number'])
+        print(u['name'])
+
+    #users = sorted(users, key = lambda i: (i['favorite']), reverse = True)
+    return dict(class_rows = rows, likedList = likedList)
 
 @action('add_contact', method="POST")
 @action.uses(url_signer.verify(), db)
@@ -261,6 +340,7 @@ def add_contact():
 def delete_contact():
     id = request.params.get('id')
     assert id is not None
+    db(db.upload.resource_id == id).delete()
     db(db.resources.id == id).delete()
     return "ok"
 
@@ -418,7 +498,7 @@ def notify_upload():
         file_date=d,
         file_size=file_size,
         download_url=download_url,
-        confirmed=True,
+        confirmed=1,
     )
     # Returns the file information.
     #rows = db(db.upload.owner == get_user_email()).select()
@@ -462,16 +542,11 @@ def mark_possible_upload(file_path):
     db.upload.insert(
         owner=get_user_email(),
         file_path=file_path,
-        confirmed=False,
+        confirmed=0,
     )
 
 
-@action('load_classes')
-@action.uses(url_signer.verify(), db)
-def load_classes():
-    rows = db(db.classes).select().as_list()
 
-    return dict(rows = rows)
 
 
 

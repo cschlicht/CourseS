@@ -14,40 +14,34 @@ let app = {};
  *
  * @return Formatted string.
  */
-function humanFileSize(bytes, si=false, dp=1) {
+function humanFileSize(bytes, si = false, dp = 1) {
     const thresh = si ? 1000 : 1024;
-  
+
     if (Math.abs(bytes) < thresh) {
-      return bytes + ' B';
+        return bytes + ' B';
     }
-  
-    const units = si
-      ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-      : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+
+    const units = si ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
     let u = -1;
-    const r = 10**dp;
-  
+    const r = 10 ** dp;
+
     do {
-      bytes /= thresh;
-      ++u;
+        bytes /= thresh;
+        ++u;
     } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
-  
-  
+
+
     return bytes.toFixed(dp) + ' ' + units[u];
-  }
+}
 
-Vue.filter('reverse', function(value) {
-    // slice to make a copy of array, then reverse the copy
-    return value.slice().reverse();
-  });
 
-function change()
-{
+
+function change() {
     this.style.height = "64px";
 }
 
 let a = 'unliked';
-var d_var =  document.getElementById("d_elem").value;
+var d_var = document.getElementById("d_elem").value;
 // Given an empty app object, initializes it filling its attributes,
 // creates a Vue instance, and then initializes the Vue instance.
 let init = (app) => {
@@ -63,6 +57,7 @@ let init = (app) => {
         class_rows: [],
         thumbs: [],
         users: [],
+        likedList: [],
         file_name: null, // File name
         file_type: null, // File type
         file_date: null, // Date when file uploaded
@@ -78,7 +73,7 @@ let init = (app) => {
     app.enumerate = (a) => {
         // This adds an _idx field to each element of the array.
         let k = 0;
-        a.map((e) => {e._idx = k++;});
+        a.map((e) => { e._idx = k++; });
         return a;
     };
 
@@ -90,26 +85,25 @@ let init = (app) => {
         })
     };
 
- 
-    app.add_contact = function () {
-        axios.post(add_contact_url,
-            {
-                
-                comment: app.vue.add_comment,
-                title: app.vue.add_title,
-                link: app.vue.add_link, 
-                author: d_var,
-                image_bool: app.vue.image_bool
-                
-            }).then(function (response) {
+
+    app.add_contact = function() {
+        axios.post(add_contact_url, {
+
+            comment: app.vue.add_comment,
+            title: app.vue.add_title,
+            link: app.vue.add_link,
+            author: d_var,
+            image_bool: app.vue.image_bool
+
+        }).then(function(response) {
             app.vue.rows.push({
                 id: response.data.id,
                 comment: app.vue.add_comment,
                 title: app.vue.add_title,
-                link: app.vue.add_link, 
+                link: app.vue.add_link,
                 author: d_var,
                 status: 0,
-    
+
             });
             app.vue.image_bool = false;
             app.enumerate(app.vue.rows);
@@ -119,7 +113,7 @@ let init = (app) => {
         });
     };
 
-    app.reset_form = function () {
+    app.reset_form = function() {
         app.vue.add_comment = "";
         app.vue.author = "";
         app.vue.add_title = "";
@@ -128,7 +122,7 @@ let init = (app) => {
 
     app.delete_contact = function(row_idx) {
         let id = app.vue.rows[row_idx].id;
-        axios.get(delete_contact_url, {params: {id: id}}).then(function (response) {
+        axios.get(delete_contact_url, { params: { id: id } }).then(function(response) {
             for (let i = 0; i < app.vue.rows.length; i++) {
                 if (app.vue.rows[i].id === id) {
                     app.vue.rows.splice(i, 1);
@@ -142,63 +136,61 @@ let init = (app) => {
                     app.enumerate(app.vue.users);
                 }
             }
-            });
+        });
     };
 
-  
 
-    app.set_add_status = function (new_status) {
-        
+
+    app.set_add_status = function(new_status) {
+
         app.vue.add_mode = new_status;
     };
 
 
-    app.set_like_status = function (row_idx, status, prevStatus) {
+    app.set_like_status = function(row_idx, status, prevStatus) {
         app.vue.rows[row_idx].status = status;
-        axios.post(like_url,
-                {
-                    id: app.vue.rows[row_idx].id,
-                    field: 'likes',
-                    value: status,
-                    prev: prevStatus
+        axios.post(like_url, {
+            id: app.vue.rows[row_idx].id,
+            field: 'likes',
+            value: status,
+            prev: prevStatus
 
 
-                });
+        });
 
         app.init()
     };
 
-    app.get_like_status = function (row_idx) {
+    app.get_like_status = function(row_idx) {
         let x = app.vue.rows[row_idx];
-        console.log(x.status); 
+        console.log(x.status);
     };
 
 
-    app.set_star_status = function (row_idx, status, prevStatus) {
-        axios.post(star_url,
-                {
-                    id: app.vue.class_rows[row_idx].id,
-                    field: 'star',
-                    value: status,
-                    prev: prevStatus
+    app.set_star_status = function(row_idx, status, prevStatus) {
+        axios.post(star_url, {
+            id: app.vue.class_rows[row_idx].id,
+            field: 'star',
+            value: status,
+            prev: prevStatus
 
 
-                });
+        });
 
         app.init()
     };
 
-    app.get_star_status = function (row_idx) {
+    app.get_star_status = function(row_idx) {
         let x = app.vue.class_rows[row_idx];
         console.log(x.status);
     };
 
-   
-    app.file_info = function () {
+
+    app.file_info = function() {
         if (app.vue.file_path) {
             let info = "";
             if (app.vue.file_size) {
-                info = humanFileSize(app.vue.file_size.toString(), si=true);
+                info = humanFileSize(app.vue.file_size.toString(), si = true);
             }
             if (app.vue.file_type) {
                 if (info) {
@@ -221,7 +213,7 @@ let init = (app) => {
     }
 
 
-    app.set_result = function (r) {
+    app.set_result = function(r) {
         // Sets the results after a server call.
         app.vue.file_name = r.data.file_name;
         app.vue.file_type = r.data.file_type;
@@ -231,7 +223,7 @@ let init = (app) => {
         app.vue.download_url = r.data.download_url;
     }
 
-    app.upload_file = function (event) {
+    app.upload_file = function(event) {
         let input = event.target;
         let file = input.files[0];
         if (file) {
@@ -245,14 +237,14 @@ let init = (app) => {
                 action: "PUT",
                 mimetype: file_type,
                 file_name: file_name
-            }).then ((r) => {
+            }).then((r) => {
                 let upload_url = r.data.signed_url;
                 let file_path = r.data.file_path;
                 // Uploads the file, using the low-level interface.
                 let req = new XMLHttpRequest();
                 // We listen to the load event = the file is uploaded, and we call upload_complete.
                 // That function will notify the server `of the location of the image.
-                req.addEventListener("load", function () {
+                req.addEventListener("load", function() {
                     app.upload_complete(file_name, file_type, file_size, file_path);
                 });
                 // TODO: if you like, add a listener for "error" to detect failure.
@@ -262,14 +254,14 @@ let init = (app) => {
         }
     }
 
-    app.upload_complete = function (file_name, file_type, file_size, file_path) {
+    app.upload_complete = function(file_name, file_type, file_size, file_path) {
         // We need to let the server know that the upload was complete;
         axios.post(notify_url, {
             file_name: file_name,
             file_type: file_type,
             file_path: file_path,
             file_size: file_size,
-        }).then( function (r) {
+        }).then(function(r) {
             app.vue.uploading = false;
             app.vue.file_name = file_name;
             app.vue.file_type = file_type;
@@ -281,7 +273,7 @@ let init = (app) => {
         });
     }
 
-    app.delete_file = function () {
+    app.delete_file = function() {
         if (!app.vue.delete_confirmation) {
             // Ask for confirmation before deleting it.
             app.vue.delete_confirmation = true;
@@ -294,12 +286,12 @@ let init = (app) => {
             axios.post(obtain_gcs_url, {
                 action: "DELETE",
                 file_path: file_path,
-            }).then(function (r) {
+            }).then(function(r) {
                 let delete_url = r.data.signed_url;
                 if (delete_url) {
                     // Performs the deletion request.
                     let req = new XMLHttpRequest();
-                    req.addEventListener("load", function () {
+                    req.addEventListener("load", function() {
                         app.deletion_complete(file_path);
                     });
                     // TODO: if you like, add a listener for "error" to detect failure.
@@ -311,13 +303,13 @@ let init = (app) => {
         }
     };
 
-    app.deletion_complete = function (file_path) {
+    app.deletion_complete = function(file_path) {
         // We need to notify the server that the file has been deleted on GCS.
         axios.post(delete_url, {
             file_path: file_path,
-        }).then (function (r) {
+        }).then(function(r) {
             // Poof, no more file.
-            app.vue.deleting =  false;
+            app.vue.deleting = false;
             app.vue.file_name = null;
             app.vue.file_type = null;
             app.vue.file_date = null;
@@ -326,10 +318,10 @@ let init = (app) => {
         })
     }
 
-    app.download_file = function () {
+    app.download_file = function() {
         if (app.vue.download_url) {
             let req = new XMLHttpRequest();
-            req.addEventListener("load", function () {
+            req.addEventListener("load", function() {
                 app.do_download(req);
             });
             req.responseType = 'blob';
@@ -338,7 +330,7 @@ let init = (app) => {
         }
     };
 
-    app.do_download = function (req) {
+    app.do_download = function(req) {
         // This Machiavellic implementation is thanks to Massimo DiPierro.
         // This creates a data URL out of the file we downloaded.
         let data_url = URL.createObjectURL(req.response);
@@ -389,16 +381,16 @@ let init = (app) => {
     // For the moment, we 'load' the data from a string.
     app.init = () => {
         axios.get(file_info_url)
-            .then(function (r) {
+            .then(function(r) {
                 app.set_result(r);
             });
-        axios.get(load_contacts_url).then(function (response) {
+        axios.get(load_contacts_url).then(function(response) {
             app.vue.rows = app.enumerate(response.data.rows);
             app.vue.users = app.enumerate(response.data.users);
         });
-        axios.get(load_classes_url).then(function (response) {
+        axios.get(load_classes_url).then(function(response) {
             app.vue.class_rows = app.enumerate(response.data.class_rows);
-            app.vue.users = app.enumerate(response.data.users);
+
         });
     };
 

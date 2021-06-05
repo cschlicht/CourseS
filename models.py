@@ -20,19 +20,14 @@ db.define_table(
     Field('number'), # 183
     Field('favorite', 'integer', default=0),
     Field('created_by', default=get_user_email),
-    Field('creation_date', 'datetime', default=get_time),
 )
-db.define_table('contact',
-                Field('comment'),
-                Field('author'), 
-                Field('email', default = get_user_email),
-                Field('status', 'integer', default = 0))
 
 db.define_table('user',
                 Field('item_id', 'integer'),
-                
                 Field('email'), 
-                Field('status', 'integer', default = 0))
+                Field('status', 'integer', default = 0),
+                Field('class_id', 'integer'),
+                Field('favorite', 'integer', default = 0))
 
 db.define_table(
     'resources',
@@ -45,7 +40,6 @@ db.define_table(
     Field('dislikes', 'integer', default = 0),
     Field('description', requires=IS_NOT_EMPTY()),
     Field('created_by', default=get_user_email),
-    Field('creation_date', 'datetime', default=get_time),
 )
 
 db.define_table(
@@ -58,17 +52,16 @@ db.define_table(
     Field('file_path'),
     Field('file_size', 'integer'),
     Field('download_url'),
-    Field('confirmed', 'boolean', default=False), # Was the upload to GCS confirmed?
+    Field('confirmed', 'integer', default=0), # Was the upload to GCS confirmed?
 )
 
 db.classes.id.readable = db.classes.id.writable = False
 db.classes.created_by.readable = db.classes.created_by.writable = False
-db.classes.creation_date.readable = db.classes.creation_date.writable = False
 
 db.resources.classes_id.readable = db.resources.classes_id.writable = False
 db.resources.id.readable = db.resources.id.writable = False
 db.resources.created_by.readable = db.resources.created_by.writable = False
-db.resources.creation_date.readable = db.resources.creation_date.writable = False
+
 
 
 ### Define your table below
