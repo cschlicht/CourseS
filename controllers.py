@@ -80,13 +80,7 @@ def index():
         star_url = URL('star', signer = url_signer),
         load_classes_url = URL('load_classes', signer=url_signer),
         load_contacts_url = URL('load_contacts', signer=url_signer),
-        add_contact_url = URL('add_contact', signer=url_signer),
-        delete_contact_url = URL('delete_contact', signer=url_signer),
-        like_url = URL('like', signer = url_signer),
         file_info_url = URL('file_info', signer=url_signer),
-        obtain_gcs_url = URL('obtain_gcs', signer=url_signer),
-        notify_url = URL('notify_upload', signer=url_signer),
-        delete_url = URL('notify_delete', signer=url_signer),
     )
 
 @action('star', method="POST")
@@ -97,26 +91,106 @@ def star():
     value = request.json.get("value")
     prev = request.json.get("prev")
 
-    test = db(db.user.class_id == id).select().as_list()
-    print(test)
-    
+    test = db(db.user.email == get_user_email()).select().as_list()
+
+  #THIS IS WHERE WE .update(favorite = value) the .select for the specific user
+  # with class_id == id and db.user.email == get_user_email()
+
+    db.user.update_or_insert(
+        ((db.user.class_id == id) & (db.user.email == get_user_email())),
+        class_id = id,
+        email = get_user_email(),
+        favorite = value
+    )
+  
+    '''r
     if value == 1:  # changing to starred
         if prev == 0:  # if we are currently not starred
             
-            db(db.classes.id == id).update(favorite=value)
+            #db(db.classes.id == id).update(favorite=value)
             if test:
                 db(db.user.class_id == id).update(favorite=value)
             else:
-                db.user.insert(class_id = id, favorite = value)
+                db.user.insert(email = get_user_email(), class_id = id, favorite = value)
 
     if value == 0:  # changing to not starred
         if prev == 1:  # if we are currently starred
             
-            db(db.classes.id == id).update(favorite=value)
+           # db(db.classes.id == id).update(favorite=value)
             if test:
                 db(db.user.class_id == id).update(favorite=value)
             else:
                 db.user.insert(class_id = id, favorite = value)
+    '''
+@action('load_classes')
+@action.uses(url_signer.verify(), db)
+def load_classes():
+    rows = db(db.classes).select().as_list()
+    users = db(db.user.email == get_user_email()).select().as_list()
+    #print(users)
+    flag = 0
+    for r in rows:
+        #print(r['id'])
+        for u in users:
+            if u['class_id'] == r['id'] and u['email'] == get_user_email():
+                flag = 1
+            
+        if(flag == 0):
+            db.user.insert(
+            class_id = r['id'],
+            email = get_user_email(),
+            favorite = 0,
+            )
+        flag = 0
+    '''r
+    use = db(db.user.class_id == 645).select().as_list()
+    print(use)
+    x = 0
+    for r in rows:
+        use = db(db.user.class_id == r['id']).select().as_list()
+        for u in use:
+            x += 1
+            if x > 1:
+                db(db.user.id == u['id']).delete()
+        x = 0
+
+    use = db(db.user.class_id == 645).select().as_list()
+    '''
+   # print(use)
+    #print(users)
+    users = db(db.user.email == get_user_email()).select().as_list()
+
+    for u in users:
+        if u['favorite'] == 1:
+            db(db.classes.id == u['class_id']).update(favorite = 1)
+        if u['favorite'] == 0:
+            db(db.classes.id == u['class_id']).update(favorite = 0)
+
+    #print(users)
+    #rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
+    '''r
+    likedList = [] 
+    likedDic = {}
+    for u in users:
+        if u['favorite'] == 1:
+            cl = db(db.classes.id == u['class_id']).select().as_list()
+            #print(cl)
+            for c in cl:
+
+                likedDic['number'] = c['number']
+                likedDic['name'] = c['name']
+                likedList.append(likedDic)
+                likedDic = {}
+
+   # print(likedList)
+    for u in likedList:
+
+        print(u['number'])
+        print(u['name'])
+'''
+    rows = db(db.classes).select().as_list()
+    rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
+    return dict(class_rows = rows)
 
 @action('resources/<c>')
 @action.uses(url_signer, auth.user, 'resources.html')
@@ -220,65 +294,7 @@ def load_contacts():
     
     return dict(rows=rows, user = user, users = users)
 
-@action('load_classes')
-@action.uses(url_signer.verify(), db)
-def load_classes():
-    rows = db(db.classes).select().as_list()
-    users = db(db.user.email == get_user_email()).select().as_list()
-    #print(users)
-    flag = 0
-    for r in rows:
-        #print(r['id'])
-        for u in users:
-            if u['class_id'] == r['id'] and u['email'] == get_user_email():
-                flag = 1
-            
-        if(flag == 0):
-            db.user.insert(
-            class_id = r['id'],
-            email = get_user_email(),
-            favorite = 0,
-            )
-        flag = 0
-    '''r
-    use = db(db.user.class_id == 645).select().as_list()
-    print(use)
-    x = 0
-    for r in rows:
-        use = db(db.user.class_id == r['id']).select().as_list()
-        for u in use:
-            x += 1
-            if x > 1:
-                db(db.user.id == u['id']).delete()
-        x = 0
 
-    use = db(db.user.class_id == 645).select().as_list()
-    '''
-   # print(use)
-    #print(users)
-    users = db(db.user.email == get_user_email()).select().as_list()
-    #rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
-    likedList = [] 
-    likedDic = {}
-    for u in users:
-        if u['favorite'] == 1:
-            cl = db(db.classes.id == u['class_id']).select().as_list()
-            #print(cl)
-            for c in cl:
-
-                likedDic['number'] = c['number']
-                likedDic['name'] = c['name']
-                likedList.append(likedDic)
-                likedDic = {}
-
-   # print(likedList)
-    for u in likedList:
-
-        print(u['number'])
-        print(u['name'])
-
-    #users = sorted(users, key = lambda i: (i['favorite']), reverse = True)
-    return dict(class_rows = rows, likedList = likedList)
 
 @action('add_contact', method="POST")
 @action.uses(url_signer.verify(), db)
@@ -498,7 +514,7 @@ def notify_upload():
         file_date=d,
         file_size=file_size,
         download_url=download_url,
-        confirmed=1,
+        confirmed=True,
     )
     # Returns the file information.
     #rows = db(db.upload.owner == get_user_email()).select()
@@ -542,7 +558,7 @@ def mark_possible_upload(file_path):
     db.upload.insert(
         owner=get_user_email(),
         file_path=file_path,
-        confirmed=0,
+        confirmed=False,
     )
 
 

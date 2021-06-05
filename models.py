@@ -52,7 +52,7 @@ db.define_table(
     Field('file_path'),
     Field('file_size', 'integer'),
     Field('download_url'),
-    Field('confirmed', 'integer', default=0), # Was the upload to GCS confirmed?
+    Field('confirmed', 'boolean', default=False), # Was the upload to GCS confirmed?
 )
 
 db.classes.id.readable = db.classes.id.writable = False
