@@ -58,23 +58,20 @@ def index():
 
     # print(JSON_FILE)
     # Inserting JSON to db
-    '''r
-    with open(JSON_FILE,'r', encoding='utf-8') as j:
-         data = json.load(j)
-         for d in data:
-
+    # with open(JSON_FILE,'r', encoding='utf-8') as j:
+    #     data = json.load(j)
+    #     for d in data:
     #         # print(d["ClassSymbol"])
     #         # print(d["Class Name"])
-             db.classes.insert(
-                 number=d['ClassSymbol'],
-                 name=d['Class Name'],
-                 favorite=0,
-             )
-    '''         
-    #db(db.classes).delete()  # Deletes classes database
+    #         db.classes.insert(
+    #          number=d['ClassSymbol'],
+    #          name=d['Class Name'],
+    #          favorite=0,
+    #         )
+    # db(db.classes).delete()  # Deletes classes database
 
     rows = db(db.classes).select()
-    #print(rows)
+    # print(rows)
     return dict(
         # This is the signed URL for the callback.
         rows = rows,

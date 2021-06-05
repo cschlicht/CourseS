@@ -220,66 +220,73 @@ option {
 <!--    </div>-->
     <h1 class="title">BSOE Courses</h1>
     <div class="section" id="vue-target" v-cloak>
-    <div class="columns is-mobile">
-        <div class="column is-three-fifths is-offset-one-fifth">
-            <table class="table is-striped is-fullwidth is-hoverable">
-                <tr>
-                    <th>Number</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Favorite</th>
-                    <th></th>
-                </tr>
-<!--                <div v-for = "row in rows" class = "block">-->
-                [[for row in rows:]]
-                <tr>
-                    <td><a v-bind:href="http://127.0.0.1:8000/proj/resources/row.number">[[=row['number'] ]]</a></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>[[=row['name'] ]]</td>
-<!--                    <td><span style="font-size:170%;color:rgb(245,227,66);">&starf;</span></td>-->
-                    <td>
-<!--                        <span class="icon has-text-warning">-->
-<!--                            <i class="fa fa-star-o"></i>-->
-<!--                        </span>-->
-                        <div v-if="row.favorite == 0" >
-                            <i class="fa fa-star fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 1, 0)"></i>
-                        </div>
-
-                        <div v-if="row.favorite == 1" >
-                            <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 0, 1)"></i>
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>
-                </div>
-                [[pass]]
-                </table>
-
-                <!--  <a class="button is-primary" href="[[=URL('add_contact')]]">-->
-                <!--    <span>Add Contact</span>-->
-                <!--  </a>-->
-        </div>
+        <h1>{{msg}}</h1>
     </div>
-</div>
+        <div class="columns is-mobile">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <table class="table is-striped is-fullwidth is-hoverable">
+                    <tr>
+                        <th>{{msg}}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Favorite</th>
+                        <th></th>
+                    </tr>
+    <!--                [[for row in rows:]]-->
+                    <tr v-for = "row in rows" :key="row.id">
+<!--                        <td><a v-bind:href="'http://127.0.0.1:8000/proj/resources/' + row.number">{{row.number}}</a></td>-->
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{row.name}}</td>
+    <!--                    <td><span style="font-size:170%;color:rgb(245,227,66);">&starf;</span></td>-->
+                        <td>
+    <!--                        <span class="icon has-text-warning">-->
+    <!--                            <i class="fa fa-star-o"></i>-->
+    <!--                        </span>-->
+                            <div v-if="row.favorite == 0" >
+                                <i class="fa fa-star fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 1, 0)"></i>
+                            </div>
+
+                            <div v-if="row.favorite == 1" >
+                                <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 0, 1)"></i>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+    <!--                [[pass]]-->
+                    </table>
+            </div>
+                    <!--  <a class="button is-primary" href="[[=URL('add_contact')]]">-->
+                    <!--    <span>Add Contact</span>-->
+                    <!--  </a>-->
+        </div>
+<!--    </div>-->
 </section>
 
 </body>
 
+[[block page_scripts]]
+<script>
+    let star_url = "[[=XML(star_url)]]";
+    let load_classes_url = "[[=XML(load_classes_url)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script language="javascript" type="text/javascript">
 
   document.getElementById("name").addEventListener("click", search);
   function search(){
 
-  
+
     $("#name").bind('input', function () {
         if (checkExists($('#name').val()) === true) {
             var url = "";
@@ -774,7 +781,7 @@ option {
                 default:
                     url = '@Url.Action("Index")';
             }
-           
+
              window.location.href = url;
         }
     });
@@ -794,7 +801,3 @@ option {
     }
 </script>
 
-<script>let star_url = "[[=XML(star_url)]]";
-        let load_classes_url = "[[=XML(load_classes_url)]]";
-</script>
-<script src="js/index.js"></script>

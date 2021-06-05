@@ -73,6 +73,7 @@ let init = (app) => {
         image_bool: false, // set to true if an image is uploaded
         deleting: false, // delete in progress
         delete_confirmation: false, // Show the delete confirmation thing.
+        msg: "test",
     };
 
     app.enumerate = (a) => {
@@ -398,7 +399,6 @@ let init = (app) => {
         });
         axios.get(load_classes_url).then(function (response) {
             app.vue.class_rows = app.enumerate(response.data.class_rows);
-            app.vue.users = app.enumerate(response.data.users);
         });
     };
 
