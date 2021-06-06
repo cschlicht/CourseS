@@ -3,15 +3,26 @@
 <style>
     h1 {
         text-align: center;
-        font-size: 100px
+        font-size: 2.5rem !important;
     }
     
     h2 {
         text-align: center;
+        font-size: 3rem !important;
     }
     
     h3 {
         text-align: right;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.5rem !important;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: 1.2rem !important;
     }
     
     .text-center {
@@ -34,195 +45,211 @@
     }
 </style>
 
-<div class="columns is-mobile">
-    <div class="column is-half is-offset-one-quarter">
-        <img src="logo.png">
+<div class="text-center">
+
+    <div class="columns is-mobile">
+        <div class="column is-three-fifths is-offset-one-fifth">
+            <img src="logo.png">
+        </div>
     </div>
+    <h2>Welcome to Course Source!</h2>
+    <p>The ultimate resource library for your BSOE classes.</p>
+    <br>
+<!--    <div class="icon-text-centered">-->
+<!--        <span class="icon has-text-info">-->
+<!--            <i class="fa fa-question-circle fa-lg"></i>-->
+<!--        </span>-->
+<!--        <span style="font-size: 1.5rem">Have you ever struggled to find good resources for a class?</span>-->
+<!--    </div>-->
+<!--    <p>Have you ever struggled to find good resources for a class?</p>-->
+<!--    <p>Discover resources other students have found useful.</p>-->
+    <p>Have you ever struggled to find good resources for a class?</p>
+    <p>Discover, rate and add resources for your classes.</p>
 </div>
 
 <body>
-    <div class="text-center">
-        <label for="myBrowser"></label>
-        <input list="browsers" id="name" name="myBrowser" onfocus="this.value=''" onchange="this.blur();" style="height: 50px; width: 200px;" />
-        <datalist id="browsers">
-                        <option value="CSE3">
-                        <option value="CSE5J">
-                        <option value="CSE12">
-                        <option value="CSE13E">
-                        <option value="CSE13S">
-                        <option value="CSE15">
-                        <option value="CSE16">
-                        <option value="CSE20">
-                        <option value="CSE30">
-                        <option value="CSE40">
-                        <option value="CSE50">
-                        <option value="CSE58">
-                        <option value="CSE80A">
-                        <option value="CSE80C">
-                        <option value="CSE80N">
-                        <option value="CSE80S">
-                        <option value="CSE100">
-                        <option value="CSE101">
-                        <option value="CSE102">
-                        <option value="CSE103">
-                        <option value="CSE104">
-                        <option value="CSE106">
-                        <option value="CSE107">
-                        <option value="CSE108">
-                        <option value="CSE110A">
-                        <option value="CSE110B">
-                        <option value="CSE111">
-                        <option value="CSE112">
-                        <option value="CSE113">
-                        <option value="CSE115A">
-                        <option value="CSE115B">
-                        <option value="CSE115C">
-                        <option value="CSE115D">
-                        <option value="CSE117">
-                        <option value="CSE118">
-                        <option value="CSE119">
-                        <option value="CSE120">
-                        <option value="CSE121">
-                        <option value="CSE122">
-                        <option value="CSE123A">
-                        <option value="CSE123B">
-                        <option value="CSE125">
-                        <option value="CSE129A">
-                        <option value="CSE129B">
-                        <option value="CSE129C">
-                        <option value="CSE130">
-                        <option value="CSE132">
-                        <option value="CSE134">
-                        <option value="CSE138">
-                        <option value="CSE140">
-                        <option value="CSE142">
-                        <option value="CSE143">
-                        <option value="CSE144">
-                        <option value="CSE145">
-                        <option value="CSE146">
-                        <option value="CSE150">
-                        <option value="CSE151">
-                        <option value="CSE152">
-                        <option value="CSE156">
-                        <option value="CSE157">
-                        <option value="CSE160">
-                        <option value="CSE161">
-                        <option value="CSE162">
-                        <option value="CSE163">
-                        <option value="CSE165">
-                        <option value="CSE166A">
-                        <option value="CSE166B">
-                        <option value="CSE167">
-                        <option value="CSE168">
-                        <option value="CSE170">
-                        <option value="CSE171A">
-                        <option value="CSE173">
-                        <option value="CSE174">
-                        <option value="CSE175">
-                        <option value="CSE180">
-                        <option value="CSE181">
-                        <option value="CSE182">
-                        <option value="CSE183">
-                        <option value="CSE184">
-                        <option value="CSE185E">
-                        <option value="CSE185S">
-                        <option value="CSE191">
-                        <option value="CSE200">
-                        <option value="CSE201">
-                        <option value="CSE202">
-                        <option value="CSE204">
-                        <option value="CSE205">
-                        <option value="CSE207">
-                        <option value="CSE208">
-                        <option value="CSE209">
-                        <option value="CSE210A">
-                        <option value="CSE210B">
-                        <option value="CSE211">
-                        <option value="CSE212A">
-                        <option value="CSE212B">
-                        <option value="CSE214">
-                        <option value="CSE215">
-                        <option value="CSE216">
-                        <option value="CSE220">
-                        <option value="CSE221">
-                        <option value="CSE222A">
-                        <option value="CSE222B">
-                        <option value="CSE225">
-                        <option value="CSE226">
-                        <option value="CSE229">
-                        <option value="CSE231">
-                        <option value="CSE232">
-                        <option value="CSE233">
-                        <option value="CSE234">
-                        <option value="CSE235">
-                        <option value="CSE237">
-                        <option value="CSE240">
-                        <option value="CSE241">
-                        <option value="CSE242">
-                        <option value="CSE243">
-                        <option value="CSE244A">
-                        <option value="CSE244B">
-                        <option value="CSE245">
-                        <option value="CSE246">
-                        <option value="CSE247">
-                        <option value="CSE248">
-                        <option value="CSE249">
-                        <option value="CSE250A">
-                        <option value="CSE250B">
-                        <option value="CSE250C">
-                        <option value="CSE253">
-                        <option value="CSE257">
-                        <option value="CSE259">
-                        <option value="CSE260">
-                        <option value="CSE261">
-                        <option value="CSE262">
-                        <option value="CSE263">
-                        <option value="CSE264">
-                        <option value="CSE265">
-                        <option value="CSE266A">
-                        <option value="CSE266B">
-                        <option value="CSE266C">
-                        <option value="CSE272">
-                        <option value="CSE276">
-                        <option value="CSE277">
-                        <option value="CSE279">
-                        <option value="CSE285">
-                        <option value="CSE290A">
-                        <option value="CSE290C">
-                        <option value="CSE290D">
-                        <option value="CSE290E">
-                        <option value="CSE290F">
-                        <option value="CSE290G">
-                        <option value="CSE290H">
-                        <option value="CSE290J">
-                        <option value="CSE290K">
-                        <option value="CSE290L">
-                        <option value="CSE290M">
-                        <option value="CSE290N">
-                        <option value="CSE290O">
-                        <option value="CSE290P">
-                        <option value="CSE290Q">
-                        <option value="CSE290S">
-                        <option value="CSE290T">
-                        <option value="CSE290X">
-                        <option value="CSE290Y">
-                        <option value="CSE293">
-                </datalist>
-    </div>
-
     <section class="section">
-        <!--    <div v-for = "row in rows" class = "block">&ndash;&gt;-->
-        <!--        <div v-if="row.favorite == False" >-->
-        <!--            <i class="fa fa-star fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 1, 0)"></i>-->
-        <!--        </div>-->
-        <!--        {{row.favorite}}-->
-        <!--        <div v-if="row.favorite == True" >-->
-        <!--            <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(row._idx, 0, 1)"></i>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <h1 class="title">BSOE Courses</h1>
+<!--        <div class="text-center">-->
+<!--            <label for="myBrowser"></label>-->
+<!--            <input list="browsers" id="name" name="myBrowser" onfocus="this.value=''" onchange="this.blur();" style="height: 50px; width: 200px;" />-->
+<!--            <datalist id="browsers">-->
+<!--                <option value="CSE3">-->
+<!--                <option value="CSE5J">-->
+<!--                <option value="CSE12">-->
+<!--                <option value="CSE13E">-->
+<!--                <option value="CSE13S">-->
+<!--                <option value="CSE15">-->
+<!--                <option value="CSE16">-->
+<!--                <option value="CSE20">-->
+<!--                <option value="CSE30">-->
+<!--                <option value="CSE40">-->
+<!--                <option value="CSE50">-->
+<!--                <option value="CSE58">-->
+<!--                <option value="CSE80A">-->
+<!--                <option value="CSE80C">-->
+<!--                <option value="CSE80N">-->
+<!--                <option value="CSE80S">-->
+<!--                <option value="CSE100">-->
+<!--                <option value="CSE101">-->
+<!--                <option value="CSE102">-->
+<!--                <option value="CSE103">-->
+<!--                <option value="CSE104">-->
+<!--                <option value="CSE106">-->
+<!--                <option value="CSE107">-->
+<!--                <option value="CSE108">-->
+<!--                <option value="CSE110A">-->
+<!--                <option value="CSE110B">-->
+<!--                <option value="CSE111">-->
+<!--                <option value="CSE112">-->
+<!--                <option value="CSE113">-->
+<!--                <option value="CSE115A">-->
+<!--                <option value="CSE115B">-->
+<!--                <option value="CSE115C">-->
+<!--                <option value="CSE115D">-->
+<!--                <option value="CSE117">-->
+<!--                <option value="CSE118">-->
+<!--                <option value="CSE119">-->
+<!--                <option value="CSE120">-->
+<!--                <option value="CSE121">-->
+<!--                <option value="CSE122">-->
+<!--                <option value="CSE123A">-->
+<!--                <option value="CSE123B">-->
+<!--                <option value="CSE125">-->
+<!--                <option value="CSE129A">-->
+<!--                <option value="CSE129B">-->
+<!--                <option value="CSE129C">-->
+<!--                <option value="CSE130">-->
+<!--                <option value="CSE132">-->
+<!--                <option value="CSE134">-->
+<!--                <option value="CSE138">-->
+<!--                <option value="CSE140">-->
+<!--                <option value="CSE142">-->
+<!--                <option value="CSE143">-->
+<!--                <option value="CSE144">-->
+<!--                <option value="CSE145">-->
+<!--                <option value="CSE146">-->
+<!--                <option value="CSE150">-->
+<!--                <option value="CSE151">-->
+<!--                <option value="CSE152">-->
+<!--                <option value="CSE156">-->
+<!--                <option value="CSE157">-->
+<!--                <option value="CSE160">-->
+<!--                <option value="CSE161">-->
+<!--                <option value="CSE162">-->
+<!--                <option value="CSE163">-->
+<!--                <option value="CSE165">-->
+<!--                <option value="CSE166A">-->
+<!--                <option value="CSE166B">-->
+<!--                <option value="CSE167">-->
+<!--                <option value="CSE168">-->
+<!--                <option value="CSE170">-->
+<!--                <option value="CSE171A">-->
+<!--                <option value="CSE173">-->
+<!--                <option value="CSE174">-->
+<!--                <option value="CSE175">-->
+<!--                <option value="CSE180">-->
+<!--                <option value="CSE181">-->
+<!--                <option value="CSE182">-->
+<!--                <option value="CSE183">-->
+<!--                <option value="CSE184">-->
+<!--                <option value="CSE185E">-->
+<!--                <option value="CSE185S">-->
+<!--                <option value="CSE191">-->
+<!--                <option value="CSE200">-->
+<!--                <option value="CSE201">-->
+<!--                <option value="CSE202">-->
+<!--                <option value="CSE204">-->
+<!--                <option value="CSE205">-->
+<!--                <option value="CSE207">-->
+<!--                <option value="CSE208">-->
+<!--                <option value="CSE209">-->
+<!--                <option value="CSE210A">-->
+<!--                <option value="CSE210B">-->
+<!--                <option value="CSE211">-->
+<!--                <option value="CSE212A">-->
+<!--                <option value="CSE212B">-->
+<!--                <option value="CSE214">-->
+<!--                <option value="CSE215">-->
+<!--                <option value="CSE216">-->
+<!--                <option value="CSE220">-->
+<!--                <option value="CSE221">-->
+<!--                <option value="CSE222A">-->
+<!--                <option value="CSE222B">-->
+<!--                <option value="CSE225">-->
+<!--                <option value="CSE226">-->
+<!--                <option value="CSE229">-->
+<!--                <option value="CSE231">-->
+<!--                <option value="CSE232">-->
+<!--                <option value="CSE233">-->
+<!--                <option value="CSE234">-->
+<!--                <option value="CSE235">-->
+<!--                <option value="CSE237">-->
+<!--                <option value="CSE240">-->
+<!--                <option value="CSE241">-->
+<!--                <option value="CSE242">-->
+<!--                <option value="CSE243">-->
+<!--                <option value="CSE244A">-->
+<!--                <option value="CSE244B">-->
+<!--                <option value="CSE245">-->
+<!--                <option value="CSE246">-->
+<!--                <option value="CSE247">-->
+<!--                <option value="CSE248">-->
+<!--                <option value="CSE249">-->
+<!--                <option value="CSE250A">-->
+<!--                <option value="CSE250B">-->
+<!--                <option value="CSE250C">-->
+<!--                <option value="CSE253">-->
+<!--                <option value="CSE257">-->
+<!--                <option value="CSE259">-->
+<!--                <option value="CSE260">-->
+<!--                <option value="CSE261">-->
+<!--                <option value="CSE262">-->
+<!--                <option value="CSE263">-->
+<!--                <option value="CSE264">-->
+<!--                <option value="CSE265">-->
+<!--                <option value="CSE266A">-->
+<!--                <option value="CSE266B">-->
+<!--                <option value="CSE266C">-->
+<!--                <option value="CSE272">-->
+<!--                <option value="CSE276">-->
+<!--                <option value="CSE277">-->
+<!--                <option value="CSE279">-->
+<!--                <option value="CSE285">-->
+<!--                <option value="CSE290A">-->
+<!--                <option value="CSE290C">-->
+<!--                <option value="CSE290D">-->
+<!--                <option value="CSE290E">-->
+<!--                <option value="CSE290F">-->
+<!--                <option value="CSE290G">-->
+<!--                <option value="CSE290H">-->
+<!--                <option value="CSE290J">-->
+<!--                <option value="CSE290K">-->
+<!--                <option value="CSE290L">-->
+<!--                <option value="CSE290M">-->
+<!--                <option value="CSE290N">-->
+<!--                <option value="CSE290O">-->
+<!--                <option value="CSE290P">-->
+<!--                <option value="CSE290Q">-->
+<!--                <option value="CSE290S">-->
+<!--                <option value="CSE290T">-->
+<!--                <option value="CSE290X">-->
+<!--                <option value="CSE290Y">-->
+<!--                <option value="CSE293">-->
+<!--            </datalist>-->
+<!--        </div>-->
         <div class="section" id="vue-target" v-cloak>
+            <h1 class="title">BSOE Courses</h1>
+            <h4>Navigate to course page by clicking on the course number.</h4>
+            <h4><i class="fa fa-star fa-lg has-text-warning"></i> Pin your favorites</h4>
+            <br>
+<!--            <div class="icon-text-center">-->
+<!--                <span class="icon has-text-warning">-->
+<!--                    -->
+<!--                </span>-->
+<!--                <span>Pin your favorites</span>-->
+<!--            </div>-->
             <div class="columns is-mobile">
+
                 <div class="field">
                     <div class="control">
                         <input name="d_elem" type="hidden" value="" id="d_elem">
@@ -230,20 +257,20 @@
                 </div>
 
 
-
-
                 <div class="column is-three-fifths is-offset-one-fifth">
                     <table class="table is-striped is-fullwidth ">
                         <tr>
-                            <th>Name</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
                             <th>Number</th>
                             <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
+                            <th>Name</th>
+                            <th></th>
+                            <th>Favorite</th>
+<!--                            <th></th>-->
+<!--                            <th></th>-->
                         </tr>
 
                         <tr v-for="r in class_rows">
@@ -252,8 +279,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>{{r.name}}</td>
                             <td></td>
+                            <td></td>
+                            <td>{{r.name}}</td>
                             <td></td>
                             <td>
                                 <div v-if="r.favorite == 1">
@@ -263,27 +291,15 @@
                                 <div v-if="r.favorite == 0">
                                     <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(r._idx, 1, 0)"></i>
                                 </div>
-
-                                    
                             </td>
+<!--                            <td></td>-->
+<!--                            <td></td>-->
                         </tr>
+                    </table>
                 </div>
-
-
-                </table>
-
             </div>
         </div>
-
-
-
-        <!--  <a class="button is-primary" href="[[=URL('add_contact')]]">-->
-        <!--    <span>Add Contact</span>-->
-        <!--  </a>-->
-        </div>
-
     </section>
-
 </body>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
