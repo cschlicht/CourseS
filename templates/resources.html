@@ -4,6 +4,22 @@
     [v-cloak] {
         display: none;
     }
+
+    h1 {
+        text-align: center;
+        font-size: 3.2rem !important;
+        margin:20px auto
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.2rem !important;
+    }
+
+    p {
+        text-align: left;
+        font-size: 1.5rem !important;
+    }
     
     div.a {
         font-size: 15px;
@@ -51,8 +67,14 @@
     }
     /* CSS link hover (green) */
 </style>
-
-<div class="title" style="width:1350px; margin:20px auto; text-align: center;">Resources for [[=course.upper()]]</div>
+<h1 class="title">Resources for [[=course.upper()]]</h1>
+<div class="columns is-mobile">
+    <div class="column is-two-sixths is-offset-4">
+        <p><i class="fa fa-thumbs-up fa-lg has-text-warning"></i> Please rate the resources useful or not useful.</p>
+        <p><i class="fa fa-arrow-up fa-lg has-text-info"></i> The most useful will sort to the top.</p>
+        <p><i class="fa fa-plus fa-lg has-text-primary"></i> Add any new resources you discover.</p>
+    </div>
+</div>
 <div class="section" id="vue-target" v-cloak>
     <div class="tile is-ancestor"></div>
     <div class="columns">

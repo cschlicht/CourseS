@@ -4,25 +4,22 @@
     h1 {
         text-align: center;
         font-size: 2.5rem !important;
+        font-weight: 600;
     }
     
     h2 {
         text-align: center;
-        font-size: 3rem !important;
-    }
-    
-    h3 {
-        text-align: right;
-    }
-
-    p {
-        text-align: center;
-        font-size: 1.5rem !important;
+        font-size: 3.2rem !important;
     }
 
     h4 {
         text-align: center;
         font-size: 1.2rem !important;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.5rem !important;
     }
     
     .text-center {
@@ -55,12 +52,6 @@
     <h2>Welcome to Course Source!</h2>
     <p>The ultimate resource library for your BSOE classes.</p>
     <br>
-<!--    <div class="icon-text-centered">-->
-<!--        <span class="icon has-text-info">-->
-<!--            <i class="fa fa-question-circle fa-lg"></i>-->
-<!--        </span>-->
-<!--        <span style="font-size: 1.5rem">Have you ever struggled to find good resources for a class?</span>-->
-<!--    </div>-->
 <!--    <p>Have you ever struggled to find good resources for a class?</p>-->
 <!--    <p>Discover resources other students have found useful.</p>-->
     <p>Have you ever struggled to find good resources for a class?</p>
@@ -238,16 +229,10 @@
 <!--            </datalist>-->
 <!--        </div>-->
         <div class="section" id="vue-target" v-cloak>
-            <h1 class="title">BSOE Courses</h1>
+            <h1>BSOE Courses</h1>
             <h4>Navigate to course page by clicking on the course number.</h4>
             <h4><i class="fa fa-star fa-lg has-text-warning"></i> Pin your favorites</h4>
             <br>
-<!--            <div class="icon-text-center">-->
-<!--                <span class="icon has-text-warning">-->
-<!--                    -->
-<!--                </span>-->
-<!--                <span>Pin your favorites</span>-->
-<!--            </div>-->
             <div class="columns is-mobile">
 
                 <div class="field">
@@ -275,7 +260,7 @@
 
                         <tr v-for="r in class_rows">
 
-                            <td>{{r.number}}</td>
+                            <td><a v-bind:href="'[[=URL('resources')]]/'+ r.number">{{r.number}}</a></td>
                             <td></td>
                             <td></td>
                             <td></td>
