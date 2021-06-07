@@ -56,25 +56,6 @@ JSON_FILE = os.path.join(APP_FOLDER, "data", "classes.json")
 @action.uses(url_signer, auth.user, 'index.html')
 def index():
 
-    # print(JSON_FILE)
-    # Inserting JSON to db
-    '''r
-    with open(JSON_FILE,'r', encoding='utf-8') as j:
-         data = json.load(j)
-         for d in data:
-
-    #         # print(d["ClassSymbol"])
-    #         # print(d["Class Name"])
-             db.classes.insert(
-                 number=d['ClassSymbol'],
-                 name=d['Class Name'],
-                 favorite=0,
-             )
-    '''         
-    #db(db.classes).delete()  # Deletes classes database
-    #load_classes()
-    rows = db(db.classes).select()
-    #print(rows)
     return dict(
         # This is the signed URL for the callback.
         star_url = URL('star', signer = url_signer),
@@ -91,7 +72,6 @@ def star():
     value = request.json.get("value")
     prev = request.json.get("prev")
 
-    test = db(db.user.email == get_user_email()).select().as_list()
 
   #THIS IS WHERE WE .update(favorite = value) the .select for the specific user
   # with class_id == id and db.user.email == get_user_email()
@@ -103,34 +83,14 @@ def star():
         favorite = value
     )
   
-    '''r
-    if value == 1:  # changing to starred
-        if prev == 0:  # if we are currently not starred
-            
-            #db(db.classes.id == id).update(favorite=value)
-            if test:
-                db(db.user.class_id == id).update(favorite=value)
-            else:
-                db.user.insert(email = get_user_email(), class_id = id, favorite = value)
-
-    if value == 0:  # changing to not starred
-        if prev == 1:  # if we are currently starred
-            
-           # db(db.classes.id == id).update(favorite=value)
-            if test:
-                db(db.user.class_id == id).update(favorite=value)
-            else:
-                db.user.insert(class_id = id, favorite = value)
-    '''
 @action('load_classes')
 @action.uses(url_signer.verify(), db)
 def load_classes():
     rows = db(db.classes).select().as_list()
     users = db(db.user.email == get_user_email()).select().as_list()
-    #print(users)
     flag = 0
     for r in rows:
-        #print(r['id'])
+
         for u in users:
             if u['class_id'] == r['id'] and u['email'] == get_user_email():
                 flag = 1
@@ -142,22 +102,7 @@ def load_classes():
             favorite = 0,
             )
         flag = 0
-    '''r
-    use = db(db.user.class_id == 645).select().as_list()
-    print(use)
-    x = 0
-    for r in rows:
-        use = db(db.user.class_id == r['id']).select().as_list()
-        for u in use:
-            x += 1
-            if x > 1:
-                db(db.user.id == u['id']).delete()
-        x = 0
 
-    use = db(db.user.class_id == 645).select().as_list()
-    '''
-   # print(use)
-    #print(users)
     users = db(db.user.email == get_user_email()).select().as_list()
 
     for u in users:
@@ -166,28 +111,7 @@ def load_classes():
         if u['favorite'] == 0:
             db(db.classes.id == u['class_id']).update(favorite = 0)
 
-    #print(users)
-    #rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
-    '''r
-    likedList = [] 
-    likedDic = {}
-    for u in users:
-        if u['favorite'] == 1:
-            cl = db(db.classes.id == u['class_id']).select().as_list()
-            #print(cl)
-            for c in cl:
 
-                likedDic['number'] = c['number']
-                likedDic['name'] = c['name']
-                likedList.append(likedDic)
-                likedDic = {}
-
-   # print(likedList)
-    for u in likedList:
-
-        print(u['number'])
-        print(u['name'])
-'''
     rows = db(db.classes).select().as_list()
     rows = sorted(rows, key = lambda i: (i['favorite']), reverse = True)
     return dict(class_rows = rows)
@@ -197,24 +121,7 @@ def load_classes():
 def resources(c = None):
     assert c is not None
     
-    #user = get_user_email()
-    rows = db(db.resources.sym == c).select().as_list()
     
-    #print(rows)
-    #for r in rows:
-        #print(r['description'])
-        #for d in r['description']:
-            #print(d)
-    '''r
-    for r in rows:
-        print(r['title'], r['likes'])
-    rows = sorted(rows, key = lambda i: (i['likes']))
-    print("Sorted: \n")
-    for r in rows:
-        print(r['title'], r['likes'])
-    #print("Sorted: \n")
-    #print(sorted(rows, key = lambda i: (i['likes'])))
-    '''
     return dict(
         course = c,
         # This is the signed URL for the callback.
@@ -234,19 +141,9 @@ def resources(c = None):
 @action.uses(url_signer.verify(), db)
 def load_contacts():
     user = get_user_email()
-    #print(user)
-   # rows = db(db.contact).select().as_list()
     db(db.resources.likes == None).delete()
     rows = db(db.resources).select().as_list()
-    #print(rows)
-    #for r in rows:
-       # print(r['sym'], r['title'], r['likes'])
-    #rows = sorted(rows, key = lambda i: (i['likes']))
-    #print(type(rows))
-    #rows.sort(key=testFunc)
-    #print(rows)
     users = db(db.user.email == get_user_email()).select().as_list()
-    #print(users)
     flag = 0
     for r in rows:
         #print(r['id'])
@@ -262,34 +159,7 @@ def load_contacts():
             )
         flag = 0
 
-    #print(rows)
     users = db(db.user.email == get_user_email()).select().as_list()
-    #print(users)
-
-    #print(rows)
-    #u = db(db.user.email == get) .select().as_list()
-   # print(users)
-    '''r
-    for r in rows:
-        print(r['id'])
-    for u in users:
-        print(u['item_id'])
-    '''
-
-    #ups = db(db.upload.owner == get_user_email()).select()
-    #print(ups)
-    #upss = db(db.upload).select()
-    #print(ups)
-   # for u in ups:
-        #fileP = u['file_path']
-        #tes = db(db.resources.id == u['resource_id']).select()
-        #for x in tes:
-            #print(x['title'])
-
-        #download_url=gcs_url(GCS_KEYS, fileP, verb='GET')
-        #print("NEW URL: ", download_url)
-
-
     rows = sorted(rows, key = lambda i: (i['likes']))
     
     return dict(rows=rows, user = user, users = users)
@@ -301,14 +171,6 @@ def load_contacts():
 def add_contact():
 
     u = get_user_email()
-    '''r
-    id2 = db.contact.insert(
-        comment=request.json.get('comment'),
-        author=request.json.get('author'),
-        email = get_user_email,
-        status = 0,
-    )
-    '''
     link = request.json.get('link')
     
     
@@ -316,7 +178,6 @@ def add_contact():
         code = link.split("=", 1)[1]
         newLink = "https://www.youtube.com/embed/"
         newLink = newLink + code
-        #print(newLink)
         link = newLink
     if link == '':
 
@@ -346,8 +207,6 @@ def add_contact():
 
     if image_bool:
         db(db.upload.id == up_id).update(resource_id = id) #connect upload to specific resource
-
-    #print("resource database added")
     
     return dict(id=id, u = u)
 
@@ -368,12 +227,9 @@ def like():
     field = request.json.get("field")
     value = request.json.get("value")
     prev = request.json.get("prev")
-    #print(prev)
-   # db(db.resources.id == id).update(**{field: value})
     rows = db(db.resources.id == id).select().as_list()
     for r in rows:
 
-        #print(r['likes'])
         likeVal = r['likes']
         disVal = r['dislikes']
     
@@ -411,11 +267,6 @@ def like():
     
     
     rows = db(db.resources.id == id).select().as_list()
-    #for r in rows:
-
-        #print("likes: ", r['likes'])
-        #print("dislikes: ", r['dislikes'])
-    #db(db.user.item_id == id).update(**{field: value})
     db.user.update_or_insert(
         ((db.user.item_id == id) & (db.user.email == get_user_email())),
         item_id = id,

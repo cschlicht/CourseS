@@ -191,40 +191,16 @@
                             <div class="c">{{r.title}}</div>
                             <iframe width="600" height="400" v-bind:src="r.link" allow="fullscreen"></iframe>
 
-
-
-
-
-
                         </div>
                         <div v-if="r.link != null && r.link.indexOf('youtube.com') == -1">
                             <!-- if we have a different link, the title should be able to be clicked on to lead to the directing website-->
-
-
-
-
 
                             <div class="c"> <a class="link" v-bind:href="r.link">{{r.title}}</a> </div>
                             <div class="a">
                                 <br>
 
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
-
-
-
 
                         <div v-if="r.link == null && r.image != null">
                             <!-- Image Case -->
@@ -232,23 +208,10 @@
                             <div class="c">{{r.title}}</div>
                             <img width="1000" :src="r.image">
 
-
                         </div>
-
-
                         <div v-if="r.link == null && r.image == null">
                             <!-- No link case-->
-
-
                             <div class="c">{{r.title}}</div>
-
-                            <div class="a">
-
-                            </div>
-
-
-
-
                         </div>
 
 
@@ -260,14 +223,8 @@
                         </div>
 
                         <div v-for="u in users" class="block">
-
-
                             <div v-if="r.id == u.item_id" class="container block">
-
                                 <div v-if="u.status == 1">
-
-
-
                                     <i class="fa fa-thumbs-up fa-lg" v-on:click="set_like_status(r._idx, 0, 1)"></i> {{r.likes}}
                                     <i class="fa fa-thumbs-o-down fa-lg" v-on:click="set_like_status(r._idx, 2, 1)"></i> {{r.dislikes}}
 

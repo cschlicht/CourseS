@@ -52,8 +52,6 @@
     <h2>Welcome to Course Source!</h2>
     <p>The ultimate resource library for your BSOE classes.</p>
     <br>
-    <!--    <p>Have you ever struggled to find good resources for a class?</p>-->
-    <!--    <p>Discover resources other students have found useful.</p>-->
     <p>Have you ever struggled to find good resources for a class?</p>
     <p>Discover, rate and add resources for your classes.</p>
 </div>
@@ -87,13 +85,11 @@
                             <th>Name</th>
                             <th></th>
                             <th>Favorite</th>
-                            <!--                            <th></th>-->
-                            <!--                            <th></th>-->
                         </tr>
 
                         <tr v-for="r in class_rows">
 
-                            <td><a v-bind:href="'[[=URL('resources')]]/'+ r.number">{{r.number}}</a></td>
+                            <td><a v-bind:href="'[[=URL('resources')]]/'+ r.number.toLowerCase()">{{r.number}}</a></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -110,8 +106,6 @@
                                     <i class="fa fa-star-o fa-lg has-text-warning" v-on:click="set_star_status(r._idx, 1, 0)"></i>
                                 </div>
                             </td>
-                            <!--                            <td></td>-->
-                            <!--                            <td></td>-->
                         </tr>
                     </table>
                 </div>
@@ -120,40 +114,6 @@
     </section>
 </body>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script language="javascript" type="text/javascript">
-    document.getElementById("name").addEventListener("click", search);
-
-    function search() {
-
-
-        $("#name").bind('input', function() {
-            if (checkExists($('#name').val()) === true) {
-                var url = "";
-                var text = $('#name').val();
-                var lower = text.toLowerCase();
-                var url1 = '/resources/';
-                url = url1.concat(lower)
-
-                window.location.href = url;
-            }
-        });
-    }
-
-    function checkExists(inputValue) {
-        console.log(inputValue);
-
-        var x = document.getElementById("browsers");
-        var i;
-        var flag;
-        for (i = 0; i < x.options.length; i++) {
-            if (inputValue == x.options[i].value) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-</script>
 [[block page_scripts]]
 <!-- Loads the index-specific js for Vue -->
 <script>

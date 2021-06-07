@@ -44,7 +44,6 @@ if os.environ.get("GAE_ENV"):
         fake_migrate=settings.CLOUD_DB_FAKE_MIGRATE,
 
     )
-    print("GAE")
 else:
     db = DAL(
         settings.DB_URI,
@@ -53,7 +52,7 @@ else:
         migrate=settings.DB_MIGRATE,
         fake_migrate=settings.DB_FAKE_MIGRATE,
     )
-    print("Nah")
+
 
 # #######################################################
 # define global objects that may or may not be used by the actions
